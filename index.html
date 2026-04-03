@@ -171,7 +171,7 @@ box-shadow:0 14px 28px rgba(0,0,0,0.35);
 
 /* SECTIONS */
 
-section:not(.hero){
+section{
 background:white;
 padding:80px 20px;
 }
@@ -193,6 +193,31 @@ background:#222;
 color:white;
 padding:30px;
 font-size:18px;
+}
+
+/* PROJECT FORM */
+
+.project-form{
+max-width:520px;
+margin:40px auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.project-form input,
+.project-form textarea,
+.project-form select{
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:14px;
+font-family:Arial, sans-serif;
+}
+
+.project-form textarea{
+min-height:130px;
+resize:vertical;
 }
 
 /* POPUP PORTFOLIO */
@@ -225,7 +250,7 @@ font-size:40px;
 color:white;
 cursor:pointer;
 }
-  
+
 </style>
 
 </head>
@@ -237,7 +262,7 @@ cursor:pointer;
 <nav class="navbar">
 <a href="#home">Home</a>
 <a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
+<a href="#project">Start a Project</a>
 <a href="#contact">Contact</a>
 </nav>
 
@@ -253,13 +278,15 @@ cursor:pointer;
 
 <div class="buttons">
 
-<a href="#contact" class="btn">START A PROJECT</a>
+<a href="#project" class="btn">START A PROJECT</a>
 
-<a href="#" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
+<a href="javascript:void(0)" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
 
 </div>
 
 </section>
+
+<!-- PORTFOLIO POPUP -->
 
 <div id="portfolioPopup" class="popup">
 
@@ -286,6 +313,38 @@ cursor:pointer;
 
 </section>
 
+<!-- START PROJECT -->
+
+<section id="project">
+
+<h2>Start a Project</h2>
+
+<form action="https://formspree.io/f/yourcode" method="POST" class="project-form">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<input type="text" name="company" placeholder="Company">
+
+<select name="service" required>
+<option value="">Type of Service</option>
+<option>Shop Drawings</option>
+<option>3D Modeling</option>
+<option>Structural Drafting</option>
+<option>Product Design</option>
+</select>
+
+<input type="text" name="deadline" placeholder="Project Deadline">
+
+<textarea name="project" placeholder="Tell me about your project..." required></textarea>
+
+<button type="submit" class="btn">SEND PROJECT</button>
+
+</form>
+
+</section>
+
 <!-- CONTACT -->
 
 <div id="contact" class="contact">
@@ -296,7 +355,7 @@ Juan Jaimes
 
 </div>
 
- <script>
+<script>
 
 function openPortfolio(){
 document.getElementById("portfolioPopup").style.display="flex";
@@ -306,7 +365,14 @@ function closePortfolio(){
 document.getElementById("portfolioPopup").style.display="none";
 }
 
+window.onclick = function(event){
+let popup=document.getElementById("portfolioPopup");
+if(event.target==popup){
+popup.style.display="none";
+}
+}
+
 </script>
-  
+
 </body>
 </html>
