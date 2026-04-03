@@ -242,6 +242,28 @@ min-height:130px;
 resize:vertical;
 }
 
+.file-upload{
+display:inline-block;
+background:#111;
+color:white;
+padding:14px 30px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:all 0.3s ease;
+box-shadow:0 8px 18px rgba(0,0,0,0.25);
+text-align:center;
+}
+
+.file-upload:hover{
+background:#f39c12;
+transform:translateY(-2px);
+}
+
+.file-upload input{
+display:none;
+}
+  
 </style>
 
 </head>
@@ -318,7 +340,10 @@ resize:vertical;
 
 <label style="text-align:left;font-size:14px;">Attach drawings or reference files</label>
 
+<label class="file-upload">
+Upload drawings or reference files
 <input type="file" name="attachment" multiple>
+</label>
 
 <button type="submit" class="btn">SEND PROJECT</button>
 
