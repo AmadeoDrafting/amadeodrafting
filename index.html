@@ -296,7 +296,7 @@ resize:vertical;
 
 <h2>Start a Project</h2>
 
-<form action="https://formspree.io/f/yourcode" method="POST" class="project-form">
+<form action="https://formspree.io/f/yourcode" method="POST" enctype="multipart/form-data" class="project-form">
 
 <input type="text" name="name" placeholder="Your Name" required>
 
@@ -315,6 +315,10 @@ resize:vertical;
 <input type="text" name="deadline" placeholder="Project Deadline">
 
 <textarea name="project" placeholder="Tell me about your project..." required></textarea>
+
+<label style="text-align:left;font-size:14px;">Attach drawings or reference files</label>
+
+<input type="file" name="attachment" multiple>
 
 <button type="submit" class="btn">SEND PROJECT</button>
 
