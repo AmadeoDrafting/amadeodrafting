@@ -42,7 +42,6 @@ font-size:14px;
 flex-direction:column;
 gap:18px;
 margin-top:20px;
-margin-bottom:120px;
 }
 
 .btn{
@@ -169,23 +168,6 @@ box-shadow:0 14px 28px rgba(0,0,0,0.35);
 
 }
 
-/* SECTIONS */
-
-section:not(.hero){
-background:white;
-padding:80px 20px;
-}
-
-section h2{
-font-size:28px;
-margin-bottom:30px;
-}
-
-.services p{
-font-size:18px;
-margin:10px 0;
-}
-
 /* CONTACT */
 
 .contact{
@@ -193,34 +175,10 @@ background:#222;
 color:white;
 padding:30px;
 font-size:18px;
+margin-top:120px;
 }
 
-/* PROJECT FORM */
-
-.project-form{
-max-width:520px;
-margin:40px auto;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-.project-form input,
-.project-form textarea,
-.project-form select{
-padding:14px;
-border-radius:10px;
-border:1px solid #ccc;
-font-size:14px;
-font-family:Arial, sans-serif;
-}
-
-.project-form textarea{
-min-height:130px;
-resize:vertical;
-}
-
-/* POPUP PORTFOLIO */
+/* POPUPS */
 
 .popup{
 display:none;
@@ -251,6 +209,39 @@ color:white;
 cursor:pointer;
 }
 
+/* FORM POPUP */
+
+.form-popup{
+background:white;
+padding:40px;
+border-radius:20px;
+max-width:600px;
+width:90%;
+box-shadow:0 30px 60px rgba(0,0,0,0.4);
+}
+
+.project-form{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:20px;
+}
+
+.project-form input,
+.project-form textarea,
+.project-form select{
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:14px;
+font-family:Arial, sans-serif;
+}
+
+.project-form textarea{
+min-height:130px;
+resize:vertical;
+}
+
 </style>
 
 </head>
@@ -261,8 +252,7 @@ cursor:pointer;
 
 <nav class="navbar">
 <a href="#home">Home</a>
-<a href="#services">Services</a>
-<a href="#project">Start a Project</a>
+<a href="javascript:void(0)" onclick="openProject()">Start a Project</a>
 <a href="#contact">Contact</a>
 </nav>
 
@@ -278,7 +268,7 @@ cursor:pointer;
 
 <div class="buttons">
 
-<a href="#project" class="btn">START A PROJECT</a>
+<a href="javascript:void(0)" class="btn" onclick="openProject()">START A PROJECT</a>
 
 <a href="javascript:void(0)" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
 
@@ -296,26 +286,13 @@ cursor:pointer;
 
 </div>
 
-<!-- SERVICES -->
+<!-- PROJECT POPUP -->
 
-<section id="services">
+<div id="projectPopup" class="popup">
 
-<h2>Services</h2>
+<span class="close" onclick="closeProject()">×</span>
 
-<div class="services">
-
-<p>Structural Drafting</p>
-<p>Fabrication Shop Drawings</p>
-<p>3D Modeling & Concept Development</p>
-<p>As-Built Documentation</p>
-
-</div>
-
-</section>
-
-<!-- START PROJECT -->
-
-<section id="project">
+<div class="form-popup">
 
 <h2>Start a Project</h2>
 
@@ -343,7 +320,9 @@ cursor:pointer;
 
 </form>
 
-</section>
+</div>
+
+</div>
 
 <!-- CONTACT -->
 
@@ -365,11 +344,27 @@ function closePortfolio(){
 document.getElementById("portfolioPopup").style.display="none";
 }
 
-window.onclick = function(event){
-let popup=document.getElementById("portfolioPopup");
-if(event.target==popup){
-popup.style.display="none";
+function openProject(){
+document.getElementById("projectPopup").style.display="flex";
 }
+
+function closeProject(){
+document.getElementById("projectPopup").style.display="none";
+}
+
+window.onclick = function(event){
+
+let portfolio=document.getElementById("portfolioPopup");
+let project=document.getElementById("projectPopup");
+
+if(event.target==portfolio){
+portfolio.style.display="none";
+}
+
+if(event.target==project){
+project.style.display="none";
+}
+
 }
 
 </script>
