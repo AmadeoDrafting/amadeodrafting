@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Amadeo Drafting & Design</title>
 
@@ -9,27 +12,33 @@
 body{
 margin:0;
 font-family:Arial, sans-serif;
-background:url('hero.jpg') center/cover no-repeat;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-color:white;
+background:#f4f4f4;
 text-align:center;
 }
 
-.logo{
-width:420px;
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px;
+}
+
+.container img{
+width:100%;
+border-radius:6px;
 }
 
 .contact{
-position:absolute;
-bottom:30px;
-background:rgba(0,0,0,0.55);
-padding:12px 30px;
-border-radius:6px;
+background:#222;
+color:white;
+padding:18px;
 font-size:18px;
+margin-top:20px;
+}
+
+.footer{
+padding:20px;
+color:#555;
+font-size:16px;
 }
 
 </style>
@@ -38,10 +47,22 @@ font-size:18px;
 
 <body>
 
-<img class="logo" src="logo.png">
+<div class="container">
+
+<img src="landing.jpg">
+
+</div>
 
 <div class="contact">
-+1 514-667-5563 | juan.jaimes.co@amadeodrafting.com
+
+Juan Jaimes | +1 514-667-5563 | juan.jaimes.co@amadeodrafting.com
+
+</div>
+
+<div class="footer">
+
+Remote drafting support for fabrication and engineering teams.
+
 </div>
 
 </body>
