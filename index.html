@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 
@@ -156,6 +155,8 @@ text-decoration:none;
 font-weight:bold;
 transition:all 0.3s ease;
 box-shadow:0 8px 18px rgba(0,0,0,0.25);
+border:none;
+cursor:pointer;
 }
 
 @media (min-width:769px){
@@ -263,7 +264,7 @@ transform:translateY(-2px);
 .file-upload input{
 display:none;
 }
-  
+
 </style>
 
 </head>
@@ -282,7 +283,7 @@ display:none;
 
 <section id="home" class="hero">
 
-<img src="Logo.png" class="logo" alt="Amadeo">
+<img src="Logo.png" class="logo">
 
 <h1>ENGINEERING DESIGN & DRAFTING SUPPORT</h1>
 
@@ -340,19 +341,8 @@ display:none;
 
 <textarea name="project" placeholder="Tell me about your project..." required></textarea>
 
-<label style="text-align:left;font-size:14px;">Attach drawings or reference files</label>
-
-<label style="text-align:left;font-size:14px;">
-Upload drawings link (Google Drive / Dropbox / WeTransfer)
-</label>
-
 <input type="text" name="files" placeholder="Paste your file link here">
 
-<p style="font-size:13px;color:#666;text-align:left;margin-top:-5px;">
-Or send files directly to: 
-<strong>juan.jaimes.co@amadeodrafting.com</strong>
-</p>
-  
 <button type="submit" class="btn">SEND PROJECT</button>
 
 </form>
@@ -371,26 +361,26 @@ Or send files directly to:
 
 <h2>Pay Invoice</h2>
 
-<form action="https://buy.stripe.com/TU_LINK_STRIPE" method="GET" target="_blank" class="project-form">
+<form class="project-form">
 
-<input type="text" name="invoice" placeholder="Invoice Number" required>
+<input type="text" id="invoiceNumber" placeholder="Invoice Number" required>
 
-<input type="number" name="amount" placeholder="Amount (CAD)" required>
+<input type="number" id="amount" placeholder="Amount (CAD)" required>
 
-<button type="submit" class="btn">PAY WITH CARD</button>
+<button type="button" class="btn" onclick="payInvoice()">PAY WITH CARD</button>
 
 </form>
 
 </div>
 
 </div>
-  
+
 <!-- CONTACT -->
 
 <div id="contact" class="contact">
 
-Juan Jaimes
-+1 514-667-5563
+Juan Jaimes  
++1 514-667-5563  
 (juan.jaimes.co@amadeodrafting.com)
 
 </div>
@@ -413,10 +403,35 @@ function closeProject(){
 document.getElementById("projectPopup").style.display="none";
 }
 
+function openPayment(){
+document.getElementById("paymentPopup").style.display="flex";
+}
+
+function closePayment(){
+document.getElementById("paymentPopup").style.display="none";
+}
+
+function payInvoice(){
+
+let invoice=document.getElementById("invoiceNumber").value;
+let amount=document.getElementById("amount").value;
+
+if(!invoice || !amount){
+alert("Please enter invoice number and amount");
+return;
+}
+
+let stripeLink="https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804";
+
+window.open(stripeLink,"_blank");
+
+}
+
 window.onclick = function(event){
 
 let portfolio=document.getElementById("portfolioPopup");
 let project=document.getElementById("projectPopup");
+let payment=document.getElementById("paymentPopup");
 
 if(event.target==portfolio){
 portfolio.style.display="none";
@@ -426,11 +441,16 @@ if(event.target==project){
 project.style.display="none";
 }
 
+if(event.target==payment){
+payment.style.display="none";
+}
+
 }
 
 </script>
 
 <!--Start of Tawk.to Script-->
+
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -442,7 +462,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 
 </body>
 </html>
