@@ -361,6 +361,30 @@ Or send files directly to:
 
 </div>
 
+<!-- PAYMENT POPUP -->
+
+<div id="paymentPopup" class="popup">
+
+<span class="close" onclick="closePayment()">×</span>
+
+<div class="form-popup">
+
+<h2>Pay Invoice</h2>
+
+<form action="https://buy.stripe.com/TU_LINK_STRIPE" method="GET" target="_blank" class="project-form">
+
+<input type="text" name="invoice" placeholder="Invoice Number" required>
+
+<input type="number" name="amount" placeholder="Amount (CAD)" required>
+
+<button type="submit" class="btn">PAY WITH CARD</button>
+
+</form>
+
+</div>
+
+</div>
+  
 <!-- CONTACT -->
 
 <div id="contact" class="contact">
