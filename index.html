@@ -359,15 +359,42 @@ display:none;
 
 <div class="form-popup">
 
-<h2>Pay Invoice</h2>
+<h2 style="margin-bottom:5px;">Pay Project Invoice</h2>
+
+<p style="color:#777;font-size:14px;margin-bottom:20px;">
+Secure payment for Amadeo Drafting & Design services
+</p>
 
 <form class="project-form">
 
-<input type="text" id="invoiceNumber" placeholder="Invoice Number" required>
+<label style="text-align:left;font-size:13px;color:#666;">
+Invoice Number
+</label>
 
-<input type="number" id="amount" placeholder="Amount (CAD)" required>
+<input type="text" id="invoiceNumber" placeholder="Ex: INV-110" required>
 
-<button type="button" class="btn" onclick="payInvoice()">PAY WITH CARD</button>
+<label style="text-align:left;font-size:13px;color:#666;">
+Amount (CAD)
+</label>
+
+<div style="display:flex;align-items:center;border:1px solid #ccc;border-radius:10px;padding:0 10px;background:white;">
+
+<span style="font-size:18px;color:#555;margin-right:8px;">$</span>
+
+<input 
+type="number" 
+id="amount" 
+placeholder="0.00"
+style="border:none;flex:1;padding:14px;font-size:14px;outline:none;"
+required>
+
+<span style="font-size:12px;color:#777;margin-left:8px;">CAD</span>
+
+</div>
+
+<button type="button" class="btn" onclick="payInvoice()">
+PAY INVOICE
+</button>
 
 </form>
 
