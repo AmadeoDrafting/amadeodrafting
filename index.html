@@ -150,6 +150,13 @@ height:auto;
 .carousel-track{
 animation:scroll 20s linear infinite;
 }
+
+/* GPU acceleration for carousel on mobile */
+
+.carousel-track{
+will-change: transform;
+transform: translateZ(0);
+}
   
 }
 
