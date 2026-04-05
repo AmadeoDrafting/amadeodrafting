@@ -15,56 +15,25 @@
 
 @media (max-width:768px){
 
-.portfolio-grid{
-display:grid;
-grid-template-columns:1fr;
-width:100%;
-}
+/* PREVENT HORIZONTAL SCROLL */
 
-.portfolio-card{
-width:100%;
-}
-  
-.services{
-padding:40px 10px;
-}
-
-.services-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:25px;
-}
-
-.service-card{
-padding:15px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-.service-card img{
-width:100%;
-border-radius:12px;
-margin-bottom:10px;
-}
-
-.service-card h3{
-font-size:20px;
-margin-bottom:5px;
-}
-
-.service-card p{
-font-size:14px;
-line-height:1.4;
-}
-  
 html, body{
 overflow-x:hidden;
+width:100%;
 }
 
-body{
-padding-left:20px;
-padding-right:20px;
+*{
+box-sizing:border-box;
+max-width:100%;
 }
+
+/* BODY SPACING */
+
+body{
+padding:0 10px;
+}
+
+/* HERO SECTION */
 
 .hero{
 height:auto !important;
@@ -88,6 +57,8 @@ line-height:1.4;
 font-size:14px;
 }
 
+/* BUTTONS */
+
 .buttons{
 flex-direction:column;
 gap:18px;
@@ -99,6 +70,58 @@ width:180px;
 margin:auto;
 }
 
+/* PROJECT CAROUSEL */
+
+.projects-carousel{
+margin-top:60px;
+}
+
+.carousel-track{
+gap:20px;
+}
+
+.carousel-track img{
+height:100px;
+object-fit:contain;
+}
+
+/* PORTFOLIO MODAL */
+
+.portfolio-modal{
+padding:40px 10px;
+}
+
+/* PORTFOLIO BOX */
+
+.portfolio-box{
+width:100%;
+max-width:500px;
+margin:0 auto;
+padding:20px;
+}
+
+/* PORTFOLIO GRID */
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:25px;
+}
+
+/* PORTFOLIO CARD */
+
+.portfolio-card{
+width:100%;
+padding:15px;
+}
+
+.portfolio-card img{
+width:100%;
+display:block;
+}
+
+/* CHAT POSITION */
+
 iframe[title="chat widget"]{
 position:fixed !important;
 top:100px !important;
@@ -107,84 +130,13 @@ bottom:auto !important;
 }
 
 div[id^="tawk"]{
-bottom:auto !important;
 top:100px !important;
 right:20px !important;
+bottom:auto !important;
 }
 
-.projects-carousel{
-margin-top:60px;
-}
-  
-.carousel-track img{
-height:100px;
-object-fit:contain;
 }
 
-.carousel-track{
-gap:20px;
-}
-
-.portfolio-grid{
-grid-template-columns:1fr;
-gap:25px;
-}
-
-.portfolio-card{
-padding:15px;
-}
-
-.portfolio-card img{
-width:100%;
-}
-
-.portfolio-box{
-max-width:100%;
-padding:25px 15px;
-margin:20px;
-}
-
-.portfolio-modal{
-padding:40px 10px;
-}
-
-.portfolio-grid{
-display:grid !important;
-grid-template-columns:1fr !important;
-max-width:100% !important;
-}
-
-.portfolio-card{
-width:100% !important;
-}
-
-.portfolio-box{
-margin-left:auto;
-margin-right:auto;
-width:100%;
-max-width:500px;
-padding:25px 15px;
-}
-
-.portfolio-modal{
-padding:40px 10px;
-}
-
-.portfolio-box{
-padding:20px 10px;
-}
-
-.portfolio-card{
-padding:15px;
-}
-
-.portfolio-card img{
-width:100%;
-display:block;
-margin:0 auto;
-}
-  
-}
 
 /* GENERAL */
 
