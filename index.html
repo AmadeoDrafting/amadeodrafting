@@ -397,16 +397,6 @@ border-radius:10px;
 
 </section>
 
-<!-- PORTFOLIO -->
-
-<div id="portfolioPopup" class="popup">
-
-<span class="close" onclick="closePortfolio()">×</span>
-
-<img src="Landing.jpeg" class="popup-image">
-
-</div>
-
 <!-- PROJECT FORM -->
 
 <div id="projectPopup" class="popup">
@@ -494,11 +484,11 @@ juan.jaimes.co@amadeodrafting.com
 <script>
 
 function openPortfolio(){
-document.getElementById("portfolioPopup").style.display="flex";
+document.getElementById("portfolioModal").style.display="block";
 }
 
 function closePortfolio(){
-document.getElementById("portfolioPopup").style.display="none";
+document.getElementById("portfolioModal").style.display="none";
 }
 
 function openProject(){
