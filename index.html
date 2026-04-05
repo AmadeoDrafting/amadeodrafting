@@ -8,11 +8,10 @@
 <title>Amadeo Drafting & Design</title>
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="shortcut icon" href="favicon-32x32.png">
 
 <style>
 
-/* ---------------- MOBILE ---------------- */
+/* MOBILE */
 
 @media (max-width:768px){
 
@@ -51,19 +50,9 @@ width:240px;
 margin:auto;
 }
 
-.navbar{
-top:20px;
-padding:10px 18px;
 }
 
-.navbar a{
-margin:0 8px;
-font-size:14px;
-}
-
-}
-
-/* ---------------- GENERAL ---------------- */
+/* GENERAL */
 
 body{
 margin:0;
@@ -78,32 +67,6 @@ url("Fondo.png");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
-}
-
-/* NAVBAR */
-
-.navbar{
-position:fixed;
-top:30px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(20,20,20,0.85);
-padding:12px 35px;
-border-radius:40px;
-backdrop-filter:blur(8px);
-z-index:1000;
-}
-
-.navbar a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-font-size:15px;
-}
-
-.navbar a:hover{
-color:#f39c12;
 }
 
 /* HERO */
@@ -162,14 +125,35 @@ border:none;
 cursor:pointer;
 }
 
-@media (min-width:769px){
-
 .btn:hover{
 background:#f39c12;
 transform:translateY(-4px);
-box-shadow:0 14px 28px rgba(0,0,0,0.35);
 }
 
+/* IMAGE CAROUSEL */
+
+.projects-carousel{
+width:100%;
+overflow:hidden;
+margin-top:80px;
+}
+
+.carousel-track{
+display:flex;
+gap:40px;
+width:max-content;
+animation:scroll 30s linear infinite;
+}
+
+.carousel-track img{
+height:140px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes scroll{
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
 }
 
 /* CONTACT */
@@ -182,109 +166,13 @@ font-size:18px;
 margin-top:120px;
 }
 
-/* POPUPS */
-
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.popup-image{
-max-width:90%;
-max-height:90%;
-border-radius:20px;
-box-shadow:0 20px 50px rgba(0,0,0,0.5);
-}
-
-.close{
-position:absolute;
-top:40px;
-right:60px;
-font-size:40px;
-color:white;
-cursor:pointer;
-}
-
-/* FORM POPUP */
-
-.form-popup{
-background:white;
-padding:40px;
-border-radius:20px;
-max-width:600px;
-width:90%;
-box-shadow:0 30px 60px rgba(0,0,0,0.4);
-}
-
-.project-form{
-display:flex;
-flex-direction:column;
-gap:15px;
-margin-top:20px;
-}
-
-.project-form input,
-.project-form textarea,
-.project-form select{
-padding:14px;
-border-radius:10px;
-border:1px solid #ccc;
-font-size:14px;
-font-family:Arial, sans-serif;
-}
-
-.project-form textarea{
-min-height:130px;
-resize:vertical;
-}
-
-.file-upload{
-display:inline-block;
-background:#111;
-color:white;
-padding:14px 30px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-transition:all 0.3s ease;
-box-shadow:0 8px 18px rgba(0,0,0,0.25);
-text-align:center;
-}
-
-.file-upload:hover{
-background:#f39c12;
-transform:translateY(-2px);
-}
-
-.file-upload input{
-display:none;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-<a href="#home">Home</a>
-<a href="javascript:void(0)" onclick="openProject()">Start a Project</a>
-<a href="#contact">Contact</a>
-</nav>
-
-<!-- HERO -->
-
-<section id="home" class="hero">
+<section class="hero">
 
 <img src="Logo.png" class="logo">
 
@@ -294,192 +182,47 @@ display:none;
 
 <div class="buttons">
 
-<a href="javascript:void(0)" class="btn" onclick="openProject()">START A PROJECT</a>
+<a href="#" class="btn">START A PROJECT</a>
 
-<a href="javascript:void(0)" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
+<a href="#" class="btn">VIEW PORTFOLIO</a>
 
-<a href="javascript:void(0)" class="btn" onclick="openPayment()">PAY INVOICE</a>
+<a href="#" class="btn">PAY INVOICE</a>
+
+</div>
+
+<!-- MOVING IMAGE BAND -->
+
+<div class="projects-carousel">
+
+<div class="carousel-track">
+
+<img src="project1.jpg">
+<img src="project2.jpg">
+<img src="project3.jpg">
+<img src="project4.jpg">
+<img src="project5.jpg">
+
+<img src="project1.jpg">
+<img src="project2.jpg">
+<img src="project3.jpg">
+<img src="project4.jpg">
+<img src="project5.jpg">
+
+</div>
 
 </div>
 
 </section>
 
-<!-- PORTFOLIO POPUP -->
-
-<div id="portfolioPopup" class="popup">
-
-<span class="close" onclick="closePortfolio()">×</span>
-
-<img src="Landing.jpeg" class="popup-image">
-
-</div>
-
-<!-- PROJECT POPUP -->
-
-<div id="projectPopup" class="popup">
-
-<span class="close" onclick="closeProject()">×</span>
-
-<div class="form-popup">
-
-<h2>Start a Project</h2>
-
-<form action="https://formspree.io/f/mwvwngdo" method="POST" enctype="multipart/form-data" class="project-form">
-
-<input type="text" name="name" placeholder="Your Name" required>
-
-<input type="email" name="email" placeholder="Your Email" required>
-
-<input type="text" name="company" placeholder="Company">
-
-<select name="service" required>
-<option value="">Type of Service</option>
-<option>Shop Drawings</option>
-<option>3D Modeling</option>
-<option>Structural Drafting</option>
-<option>Product Design</option>
-</select>
-
-<input type="text" name="deadline" placeholder="Project Deadline">
-
-<textarea name="project" placeholder="Tell me about your project..." required></textarea>
-
-<input type="text" name="files" placeholder="Paste your file link here">
-
-<button type="submit" class="btn">SEND PROJECT</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- PAYMENT POPUP -->
-
-<div id="paymentPopup" class="popup">
-
-<span class="close" onclick="closePayment()">×</span>
-
-<div class="form-popup">
-
-<h2 style="margin-bottom:5px;">Pay Project Invoice</h2>
-
-<p style="color:#777;font-size:14px;margin-bottom:20px;">
-Secure payment for Amadeo Drafting & Design services
-</p>
-
-<form class="project-form">
-
-<label style="text-align:left;font-size:13px;color:#666;">
-Invoice Number
-</label>
-
-<input type="text" id="invoiceNumber" placeholder="Ex: INV-110" required>
-
-<label style="text-align:left;font-size:13px;color:#666;">
-Amount (CAD)
-</label>
-
-<div style="display:flex;align-items:center;border:1px solid #ccc;border-radius:10px;padding:0 10px;background:white;">
-
-<span style="font-size:18px;color:#555;margin-right:8px;">$</span>
-
-<input 
-type="number" 
-id="amount" 
-placeholder="0.00"
-style="border:none;flex:1;padding:14px;font-size:14px;outline:none;"
-required>
-
-<span style="font-size:12px;color:#777;margin-left:8px;">CAD</span>
-
-</div>
-
-<button type="button" class="btn" onclick="payInvoice()">
-PAY INVOICE
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- CONTACT -->
-
-<div id="contact" class="contact">
+<div class="contact">
 
 Juan Jaimes  
 +1 514-667-5563  
-(juan.jaimes.co@amadeodrafting.com)
+juan.jaimes.co@amadeodrafting.com
 
 </div>
 
-<script>
-
-function openPortfolio(){
-document.getElementById("portfolioPopup").style.display="flex";
-}
-
-function closePortfolio(){
-document.getElementById("portfolioPopup").style.display="none";
-}
-
-function openProject(){
-document.getElementById("projectPopup").style.display="flex";
-}
-
-function closeProject(){
-document.getElementById("projectPopup").style.display="none";
-}
-
-function openPayment(){
-document.getElementById("paymentPopup").style.display="flex";
-}
-
-function closePayment(){
-document.getElementById("paymentPopup").style.display="none";
-}
-
-function payInvoice(){
-
-let invoice=document.getElementById("invoiceNumber").value;
-let amount=document.getElementById("amount").value;
-
-if(!invoice || !amount){
-alert("Please enter invoice number and amount");
-return;
-}
-
-let stripeLink="https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804";
-
-window.open(stripeLink,"_blank");
-
-}
-
-window.onclick = function(event){
-
-let portfolio=document.getElementById("portfolioPopup");
-let project=document.getElementById("projectPopup");
-let payment=document.getElementById("paymentPopup");
-
-if(event.target==portfolio){
-portfolio.style.display="none";
-}
-
-if(event.target==project){
-project.style.display="none";
-}
-
-if(event.target==payment){
-payment.style.display="none";
-}
-
-}
-
-</script>
-
-<!--Start of Tawk.to Script-->
+<!-- TAWK CHAT -->
 
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
