@@ -84,28 +84,28 @@ object-fit:cover;
 /* PORTFOLIO MODAL */
 
 .portfolio-modal{
-padding:20px 10px;
-display:flex;
-justify-content:center;
+padding:20px 10px !important;
+overflow-y:auto;
 align-items:flex-start;
+height:100vh;
 }
 
 /* PORTFOLIO BOX */
 
 .portfolio-box{
-width:100%;
-max-width:420px;
-margin:0 auto;
-padding:16px;
-box-sizing:border-box;
+  width:100%;
+  max-width:95%;
+  margin:0 auto;
+  padding:15px;
+  box-sizing:border-box;
 }
 
 /* PORTFOLIO GRID */
 
 .portfolio-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:20px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
 }
 
 /* PORTFOLIO CARD */
@@ -116,8 +116,9 @@ padding:15px;
 }
 
 .portfolio-card img{
-width:100%;
-display:block;
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 /* CHAT POSITION */
