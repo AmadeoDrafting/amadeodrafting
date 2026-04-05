@@ -242,12 +242,16 @@ box-shadow:0 20px 50px rgba(0,0,0,0.5);
 
 .close{
 position:absolute;
-top:15px;
-right:20px;
-font-size:32px;
-color:#333;
+top:20px;
+right:30px;
+font-size:38px;
+color:white;
 cursor:pointer;
-z-index:3000;
+z-index:4000;
+}
+
+.portfolio-modal .close{
+position:fixed;
 }
 
 /* FORM POPUP */
@@ -293,7 +297,10 @@ height:100%;
 background:rgba(0,0,0,0.8);
 z-index:3000;
 overflow:auto;
-padding:60px 20px;
+padding:80px 20px;
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
 .portfolio-grid{
@@ -311,9 +318,21 @@ padding:20px;
 text-align:center;
 }
 
+.portfolio-card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+  
 .portfolio-card img{
 width:100%;
 border-radius:10px;
+}
+
+.portfolio-modal h2{
+color:white;
+text-align:center;
+margin-bottom:40px;
+font-size:32px;
 }
   
 </style>
@@ -523,7 +542,7 @@ window.open("https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804","_blank");
 
 window.onclick=function(event){
 
-let portfolio=document.getElementById("portfolioPopup");
+let portfolio=document.getElementById("portfolioModal");
 let project=document.getElementById("projectPopup");
 let payment=document.getElementById("paymentPopup");
 
