@@ -470,7 +470,9 @@ to{opacity:1;}
 
 <a href="javascript:void(0)" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
 
-<a href="javascript:void(0)" class="btn" onclick="openPayment()">PAY INVOICE</a>
+<a href="https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804" class="btn">
+PAY INVOICE
+</a>
 
 </div>
 
@@ -554,30 +556,6 @@ to{opacity:1;}
 
 </div>
 
-<!-- PAYMENT -->
-
-<div id="paymentPopup" class="popup">
-
-<div class="form-popup">
-
-<span class="close" onclick="closePayment()">×</span>
-
-<h2>Pay Project Invoice</h2>
-
-<form class="project-form">
-
-<input type="text" id="invoiceNumber" placeholder="Invoice Number">
-
-<input type="number" id="amount" placeholder="Amount CAD">
-
-<button type="button" class="btn" onclick="payInvoice()">
-PAY INVOICE
-</button>
-
-</form>
-
-</div>
-
 </div>
 
 <div class="contact">
@@ -618,37 +596,13 @@ function closeProject(){
 document.getElementById("projectPopup").style.display="none";
 }
 
-function openPayment(){
-document.getElementById("paymentPopup").style.display="flex";
-}
-
-function closePayment(){
-document.getElementById("paymentPopup").style.display="none";
-}
-
-function payInvoice(){
-
-let invoice=document.getElementById("invoiceNumber").value;
-let amount=document.getElementById("amount").value;
-
-if(!invoice || !amount){
-alert("Please enter invoice number and amount");
-return;
-}
-
-window.open("https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804","_blank");
-
-}
-
 window.onclick=function(event){
 
 let portfolio=document.getElementById("portfolioModal");
 let project=document.getElementById("projectPopup");
-let payment=document.getElementById("paymentPopup");
 
 if(event.target==portfolio){portfolio.style.display="none";}
 if(event.target==project){project.style.display="none";}
-if(event.target==payment){payment.style.display="none";}
 
 }
 
