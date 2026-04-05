@@ -91,7 +91,7 @@ padding:40px 10px;
 .portfolio-box{
 width:100%;
 max-width:90%;
-margin;
+margin:auto;
 padding:30px;
 }
 
@@ -138,24 +138,13 @@ margin-top:80px;
 
 .carousel-track{
 display:flex;
-gap:40px;
+gap:20px;
 width:max-content;
-animation:scroll 60s linear infinite;
-}
-
-/* FASTER CAROUSEL ONLY ON MOBILE */
-
-.carousel-track{
 animation:scroll 20s linear infinite;
-}
+will-change:transform;
+transform:translateZ(0);
+}  
 
-/* GPU acceleration for carousel on mobile */
-
-.carousel-track{
-will-change: transform;
-transform: translateZ(0);
-}
-  
 }
 
 
