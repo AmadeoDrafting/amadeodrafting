@@ -130,7 +130,7 @@ background:#f39c12;
 transform:translateY(-4px);
 }
 
-/* IMAGE CAROUSEL */
+/* IMAGE BAND */
 
 .projects-carousel{
 width:100%;
@@ -166,6 +166,70 @@ font-size:18px;
 margin-top:120px;
 }
 
+/* POPUPS */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.popup-image{
+max-width:90%;
+max-height:90%;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+.close{
+position:absolute;
+top:40px;
+right:60px;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+
+/* FORM POPUP */
+
+.form-popup{
+background:white;
+padding:40px;
+border-radius:20px;
+max-width:600px;
+width:90%;
+box-shadow:0 30px 60px rgba(0,0,0,0.4);
+}
+
+.project-form{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:20px;
+}
+
+.project-form input,
+.project-form textarea,
+.project-form select{
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:14px;
+font-family:Arial, sans-serif;
+}
+
+.project-form textarea{
+min-height:130px;
+resize:vertical;
+}
+
 </style>
 
 </head>
@@ -182,11 +246,11 @@ margin-top:120px;
 
 <div class="buttons">
 
-<a href="#" class="btn">START A PROJECT</a>
+<a href="javascript:void(0)" class="btn" onclick="openProject()">START A PROJECT</a>
 
-<a href="#" class="btn">VIEW PORTFOLIO</a>
+<a href="javascript:void(0)" class="btn" onclick="openPortfolio()">VIEW PORTFOLIO</a>
 
-<a href="#" class="btn">PAY INVOICE</a>
+<a href="javascript:void(0)" class="btn" onclick="openPayment()">PAY INVOICE</a>
 
 </div>
 
@@ -214,6 +278,78 @@ margin-top:120px;
 
 </section>
 
+<!-- PORTFOLIO -->
+
+<div id="portfolioPopup" class="popup">
+
+<span class="close" onclick="closePortfolio()">×</span>
+
+<img src="Landing.jpeg" class="popup-image">
+
+</div>
+
+<!-- PROJECT FORM -->
+
+<div id="projectPopup" class="popup">
+
+<span class="close" onclick="closeProject()">×</span>
+
+<div class="form-popup">
+
+<h2>Start a Project</h2>
+
+<form action="https://formspree.io/f/mwvwngdo" method="POST" class="project-form">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<input type="text" name="company" placeholder="Company">
+
+<select name="service" required>
+<option value="">Type of Service</option>
+<option>Shop Drawings</option>
+<option>3D Modeling</option>
+<option>Structural Drafting</option>
+<option>Product Design</option>
+</select>
+
+<textarea name="project" placeholder="Tell me about your project..." required></textarea>
+
+<button type="submit" class="btn">SEND PROJECT</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- PAYMENT -->
+
+<div id="paymentPopup" class="popup">
+
+<span class="close" onclick="closePayment()">×</span>
+
+<div class="form-popup">
+
+<h2>Pay Project Invoice</h2>
+
+<form class="project-form">
+
+<input type="text" id="invoiceNumber" placeholder="Invoice Number">
+
+<input type="number" id="amount" placeholder="Amount CAD">
+
+<button type="button" class="btn" onclick="payInvoice()">
+PAY INVOICE
+</button>
+
+</form>
+
+</div>
+
+</div>
+
 <div class="contact">
 
 Juan Jaimes  
@@ -222,12 +358,67 @@ juan.jaimes.co@amadeodrafting.com
 
 </div>
 
+<script>
+
+function openPortfolio(){
+document.getElementById("portfolioPopup").style.display="flex";
+}
+
+function closePortfolio(){
+document.getElementById("portfolioPopup").style.display="none";
+}
+
+function openProject(){
+document.getElementById("projectPopup").style.display="flex";
+}
+
+function closeProject(){
+document.getElementById("projectPopup").style.display="none";
+}
+
+function openPayment(){
+document.getElementById("paymentPopup").style.display="flex";
+}
+
+function closePayment(){
+document.getElementById("paymentPopup").style.display="none";
+}
+
+function payInvoice(){
+
+let invoice=document.getElementById("invoiceNumber").value;
+let amount=document.getElementById("amount").value;
+
+if(!invoice || !amount){
+alert("Please enter invoice number and amount");
+return;
+}
+
+window.open("https://buy.stripe.com/dRm4gz8rTb2213o6Yk04804","_blank");
+
+}
+
+window.onclick=function(event){
+
+let portfolio=document.getElementById("portfolioPopup");
+let project=document.getElementById("projectPopup");
+let payment=document.getElementById("paymentPopup");
+
+if(event.target==portfolio){portfolio.style.display="none";}
+if(event.target==project){project.style.display="none";}
+if(event.target==payment){payment.style.display="none";}
+
+}
+
+</script>
+
 <!-- TAWK CHAT -->
 
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+var s1=document.createElement("script"),
+s0=document.getElementsByTagName("script")[0];
 s1.async=true;
 s1.src='https://embed.tawk.to/69cf61f4c710b01c3973db07/1jl91d8r9';
 s1.charset='UTF-8';
