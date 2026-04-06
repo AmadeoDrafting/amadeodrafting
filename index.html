@@ -486,7 +486,7 @@ to{opacity:1;}
 
 <body>
 
-<a href="#about" class="about-mobile">ABOUT US</a>
+<a href="javascript:void(0)" class="about-mobile" onclick="openAbout()">ABOUT US</a>
 
 <section class="hero">
 <img src="Logo.png" class="logo">
@@ -562,6 +562,29 @@ We specialize in shop drawings, fabrication drawings, and structural drafting fo
 
 </section>
 
+<!-- ABOUT POPUP -->
+
+<div id="aboutPopup" class="popup">
+
+<div class="form-popup">
+
+<span class="close" onclick="closeAbout()">×</span>
+
+<h2>About Amadeo Drafting & Design</h2>
+
+<p style="line-height:1.6; text-align:left;">
+
+Amadeo Drafting & Design provides professional engineering drafting and 3D modeling services.
+
+We specialize in shop drawings, fabrication drawings and structural drafting for manufacturers, engineers and construction companies.
+
+Our goal is to help companies transform ideas into clear, precise and fabrication-ready drawings.
+
+</p>
+
+</div>
+
+</div>
 
 <!-- PROJECT FORM -->
 
@@ -641,13 +664,25 @@ function closeProject(){
 document.getElementById("projectPopup").style.display="none";
 }
 
+function openAbout(){
+document.getElementById("aboutPopup").style.display="flex";
+}
+
+function closeAbout(){
+document.getElementById("aboutPopup").style.display="none";
+}
+
 window.onclick=function(event){
 
 let portfolio=document.getElementById("portfolioModal");
 let project=document.getElementById("projectPopup");
 
+let about=document.getElementById("aboutPopup");
+
+
 if(event.target==portfolio){portfolio.style.display="none";}
 if(event.target==project){project.style.display="none";}
+if(event.target==about){about.style.display="none";}
 
 }
 
