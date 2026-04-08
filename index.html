@@ -731,8 +731,14 @@ document.getElementById("aboutPopup").style.display="none";
 /* NUEVO CODIGO PARA AGRANDAR IMAGEN */
 
 function openImage(src){
+
+if(window.innerWidth <= 768){
+return;
+}
+
 document.getElementById("imagePopup").style.display="flex";
 document.getElementById("popupImg").src=src;
+
 }
 
 function closeImage(){
