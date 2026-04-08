@@ -490,6 +490,7 @@ transition:0.3s;
 .portfolio-card img{
 width:100%;
 border-radius:10px;
+cursor:pointer;
 }
 
 .portfolio-modal h2{
@@ -694,18 +695,29 @@ document.getElementById("aboutPopup").style.display="flex";
 function closeAbout(){
 document.getElementById("aboutPopup").style.display="none";
 }
+  
+/* NUEVO CODIGO PARA AGRANDAR IMAGEN */
 
+function openImage(src){
+document.getElementById("imagePopup").style.display="flex";
+document.getElementById("popupImg").src=src;
+}
+
+function closeImage(){
+document.getElementById("imagePopup").style.display="none";
+}
+  
 window.onclick=function(event){
 
 let portfolio=document.getElementById("portfolioModal");
 let project=document.getElementById("projectPopup");
-
 let about=document.getElementById("aboutPopup");
-
+let image=document.getElementById("imagePopup");
 
 if(event.target==portfolio){portfolio.style.display="none";}
 if(event.target==project){project.style.display="none";}
 if(event.target==about){about.style.display="none";}
+if(event.target==image){image.style.display="none";}
 
 }
 
@@ -737,24 +749,25 @@ s0.parentNode.insertBefore(s1,s0);
 <div class="portfolio-grid">
 
 <div class="portfolio-card">
-<img src="solidworks-3d-modeling-metal-structure-design.png">
+<img src="solidworks-3d-modeling-metal-structure-design.png" onclick="openImage(this.src)">
 <h3>3D Modeling</h3>
 <p>SolidWorks modeling for products, structures and fabrication planning.</p>
 </div>
 
 <div class="portfolio-card">
-<img src="shop-drawings-fabrication-plans.png">
+<img src="shop-drawings-fabrication-plans.png" onclick="openImage(this.src)">
 <h3>Shop Drawings</h3>
 <p>Fabrication-ready technical drawings with dimensions and assembly details.</p>
 </div>
 
 <div class="portfolio-card">
-<img src="structural-steel-drafting.png">
+<img src="structural-steel-drafting.png" onclick="openImage(this.src)">
 <h3>Structural Drafting</h3>
 <p>Drafting for platforms, stairs and industrial metal structures.</p>
 </div>
+  
 <div class="portfolio-card">
-<img src="furniture-millwork-shop-drawings.png">
+<img src="furniture-millwork-shop-drawings.png" onclick="openImage(this.src)">
 <h3>Furniture & Millwork</h3>
 <p>Custom furniture and millwork drawings for manufacturing.</p>
 </div>  
@@ -766,5 +779,13 @@ s0.parentNode.insertBefore(s1,s0);
 
 </div> <!-- portfolioModal -->
 
+<div id="imagePopup" class="popup">
+
+<span class="close" onclick="closeImage()">×</span>
+
+<img id="popupImg" class="popup-image">
+
+</div>
+  
 </body>
 </html>
