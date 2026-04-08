@@ -218,6 +218,10 @@ margin:0 auto;
 .portfolio-modal .about-mobile{
 display:none;
 }
+
+.about-mobile{
+z-index:1;
+}
   
 }
 
@@ -721,12 +725,10 @@ juan.jaimes.co@amadeodrafting.com
 
 function openPortfolio(){
 document.getElementById("portfolioModal").style.display="flex";
-document.querySelector(".about-mobile").style.display="none";
 }
 
 function closePortfolio(){
 document.getElementById("portfolioModal").style.display="none";
-document.querySelector(".about-mobile").style.display="block";
 }
 
 function openProject(){
