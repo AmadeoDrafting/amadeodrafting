@@ -383,11 +383,24 @@ animation:fadeIn 0.4s;
 
 
 .popup-image{
-max-width:90%;
-max-height:90%;
+max-width:75vw;
+max-height:85vh;
 border-radius:20px;
 box-shadow:0 20px 50px rgba(0,0,0,0.5);
+display:block;
+}
+
+.image-container{
 position:relative;
+display:inline-block;
+}
+
+.image-container .close{
+position:absolute;
+top:10px;
+right:10px;
+color:white;
+font-size:30px;
 }
 
 .close{
@@ -799,7 +812,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 <div id="imagePopup" class="popup">
 
-<div style="position:relative; display:inline-block;">
+<div class="image-container">
 
 <span class="close" onclick="closeImage()">×</span>
 
