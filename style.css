@@ -259,14 +259,12 @@ padding:0 60px 60px 60px;
 }
 
 .service{
-display:grid;
-grid-template-columns:80px 320px 420px;
-align-items:start;
+display:flex;
+align-items:center;
+justify-content:space-between;
 
-padding:40px 0;
+padding:30px 0;
 border-bottom:1px solid #e5e5e5;
-
-transition:0.3s;
 }
 
 .service:hover{
@@ -278,16 +276,14 @@ color:#999;
 font-size:13px;
 }
 
-.service-title{
-font-size:20px;
-font-weight:500;
+.service-number{
+color:#999;
+width:60px;
 }
 
 .service-projects{
-color:#777;
+color:#999;
 font-size:14px;
-line-height:1.7;
-max-width:420px;
 }
 
 /* QUOTE BUTTON */
