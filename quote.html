@@ -34,6 +34,7 @@ padding:14px 18px;
 border-radius:8px;
 max-width:520px;
 margin-bottom:14px;
+line-height:1.5;
 }
 
 .user-message{
@@ -52,6 +53,7 @@ gap:10px;
 padding:16px;
 border-top:1px solid #e5e5e5;
 background:#fafafa;
+align-items:center;
 }
 
 #chat-input{
@@ -68,6 +70,20 @@ border:none;
 padding:10px 16px;
 border-radius:6px;
 cursor:pointer;
+}
+
+.send-btn:hover{
+background:#000;
+}
+
+.file-btn{
+cursor:pointer;
+font-size:18px;
+padding:4px 6px;
+}
+
+#file-input{
+display:none;
 }
 
 </style>
@@ -93,7 +109,7 @@ project<span class="dot"></span>
 
 <p class="quote-subtitle">
 Chat with our intake assistant — it takes about 90 seconds.
-Attach drawings or references anytime.
+Attach drawings, references or 3D files anytime.
 </p>
 
 </div>
@@ -103,7 +119,7 @@ Attach drawings or references anytime.
 <div class="quote-sidebar">
 
 <h3>
-Describe your project and we’ll estimate it.
+Describe your project and we'll estimate it.
 </h3>
 
 <p class="quote-tags">
@@ -123,9 +139,11 @@ What type of drafting do you need?
 
 </div>
 
-<form id="chat-form">
+<form id="chat-form" enctype="multipart/form-data">
 
 <div class="chat-input">
+
+<label for="file-input" class="file-btn">📎</label> <input type="file" id="file-input" multiple>
 
 <input
 type="text"
@@ -155,11 +173,30 @@ Send
 
 <script>
 
+/* NAVBAR */
+
 fetch("navbar.html")
 .then(res => res.text())
 .then(data => {
+
 document.getElementById("navbar").innerHTML = data;
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link=>{
+if(link.getAttribute("href")===current){
+link.classList.add("active");
+}
 });
+
+});
+
+/* FOOTER */
 
 fetch("footer.html")
 .then(res => res.text())
@@ -176,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function(){
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
+const fileInput = document.getElementById("file-input");
 
 let step = 0;
 
@@ -189,7 +227,9 @@ const questions = [
 
 "What are the approximate dimensions?",
 
-"What is your project deadline?"
+"What is your project deadline?",
+
+"What email should we send the quote to?"
 
 ];
 
@@ -199,7 +239,7 @@ e.preventDefault();
 
 const message = input.value.trim();
 
-if(message === "") return;
+if(message === "" && fileInput.files.length === 0) return;
 
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
@@ -220,7 +260,7 @@ if(step < questions.length){
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
-botMsg.className = "bot-message";
+botMsg.className="bot-message";
 botMsg.innerText = questions[step];
 
 chat.appendChild(botMsg);
@@ -238,6 +278,8 @@ estimatePrice();
 }
 
 });
+
+/* PRICE ESTIMATION */
 
 function estimatePrice(){
 
@@ -263,8 +305,8 @@ price="$300 – $1000 CAD";
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
-botMsg.className = "bot-message";
-botMsg.innerText = "Estimated price range: " + price;
+botMsg.className="bot-message";
+botMsg.innerText="Estimated price range: "+price;
 
 chat.appendChild(botMsg);
 
@@ -275,8 +317,8 @@ chat.scrollTop = chat.scrollHeight;
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
-botMsg.className = "bot-message";
-botMsg.innerText = "We will review your project and confirm the final quote shortly.";
+botMsg.className="bot-message";
+botMsg.innerText="Thank you. We'll review your project and confirm the quote shortly.";
 
 chat.appendChild(botMsg);
 
@@ -288,31 +330,35 @@ sendEmail(price);
 
 }
 
+/* EMAIL */
+
 function sendEmail(price){
 
-fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
+const formData = new FormData();
 
-method:"POST",
+formData.append("subject","New Project Request - Amadeo Drafting");
 
-headers:{
-'Content-Type':'application/json'
-},
-
-body:JSON.stringify({
-
-subject:"New Project Request - Amadeo Drafting",
-
-message:
+formData.append("message",
 
 "Service: "+answers.step0+
 "\nFiles: "+answers.step1+
 "\nDimensions: "+answers.step2+
 "\nDeadline: "+answers.step3+
+"\nClient Email: "+answers.step4+
 "\nEstimated price: "+price
 
-})
+);
 
+for(let i=0;i<fileInput.files.length;i++){
+formData.append("attachment", fileInput.files[i]);
+}
+
+fetch("https://formsubmit.co/juan.jaimes.co@amadeodrafting.com",{
+method:"POST",
+body:formData
 });
+
+fileInput.value="";
 
 }
 
