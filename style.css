@@ -296,3 +296,47 @@ margin:auto;
 padding:60px;
 }
 
+/* ABOUT PAGE */
+
+.about-section{
+max-width:1400px;
+margin:auto;
+padding:120px 60px;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:120px;
+align-items:start;
+}
+
+.about-left h1{
+font-size:64px;
+font-weight:500;
+line-height:1.1;
+margin-bottom:40px;
+}
+
+.about-text{
+color:#666;
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.about-signature{
+margin-top:40px;
+padding-top:20px;
+border-top:1px solid #ddd;
+}
+
+.about-name{
+font-weight:500;
+margin-bottom:6px;
+}
+
+.about-role{
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+}
