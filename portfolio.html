@@ -143,6 +143,21 @@ fetch("navbar.html")
 
 document.getElementById("navbar").innerHTML = data;
 
+/* activar menu actual */
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link=>{
+if(link.getAttribute("href") === current){
+link.classList.add("active");
+}
+});
+
 /* esperar a que el navbar cargue */
 
 setTimeout(()=>{
