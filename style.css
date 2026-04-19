@@ -260,11 +260,12 @@ padding:0 60px 60px 60px;
 
 .service{
 display:grid;
-grid-template-columns:80px 320px 1fr 200px;
-align-items:center;
+grid-template-columns:80px 320px 1fr;
+align-items:start;
 
 padding:40px 0;
 border-bottom:1px solid #e5e5e5;
+gap:40px;
 }
 
 .service:hover{
