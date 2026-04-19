@@ -388,5 +388,105 @@ document.getElementById("chat-form").submit();
 
 </script>
 
+<script>
+
+setTimeout(()=>{
+
+let lang = localStorage.getItem("lang") || "en";
+
+const translations = {
+
+en:{
+
+request_quote:"REQUEST A QUOTE",
+quote_title:"Tell us about your project",
+quote_subtitle:"Chat with our intake assistant — it takes about 90 seconds. Attach drawings, references or 3D files anytime.",
+
+describe_project:"Describe your project and we'll estimate it.",
+
+bot_intro:"Hi — I'm Amadeo Drafting’s intake assistant. What type of drafting do you need?",
+
+input_placeholder:"Type your reply...",
+send_btn:"Send"
+
+},
+
+fr:{
+
+request_quote:"DEMANDE DE DEVIS",
+quote_title:"Parlez-nous de votre projet",
+quote_subtitle:"Discutez avec notre assistant — cela prend environ 90 secondes. Ajoutez des plans ou fichiers 3D à tout moment.",
+
+describe_project:"Décrivez votre projet et nous l’estimerons.",
+
+bot_intro:"Bonjour — je suis l’assistant Amadeo Drafting. Quel type de dessin technique vous faut-il?",
+
+input_placeholder:"Tapez votre réponse...",
+send_btn:"Envoyer"
+
+}
+
+};
+
+/* aplicar idioma */
+
+function applyLanguage(){
+
+if(document.querySelector(".small-title"))
+document.querySelector(".small-title").innerText =
+translations[lang].request_quote;
+
+if(document.querySelector(".quote-header h1"))
+document.querySelector(".quote-header h1").childNodes[0].nodeValue =
+translations[lang].quote_title;
+
+if(document.querySelector(".quote-subtitle"))
+document.querySelector(".quote-subtitle").innerText =
+translations[lang].quote_subtitle;
+
+if(document.querySelector(".quote-sidebar h3"))
+document.querySelector(".quote-sidebar h3").innerText =
+translations[lang].describe_project;
+
+if(document.querySelector(".bot-message"))
+document.querySelector(".bot-message").innerText =
+translations[lang].bot_intro;
+
+if(document.getElementById("chat-input"))
+document.getElementById("chat-input").placeholder =
+translations[lang].input_placeholder;
+
+if(document.querySelector(".send-btn"))
+document.querySelector(".send-btn").innerText =
+translations[lang].send_btn;
+
+/* botón idioma */
+
+const btn = document.getElementById("lang-switch");
+
+if(btn){
+
+btn.innerText = lang === "en" ? "FR" : "EN";
+
+btn.onclick = function(){
+
+lang = lang === "en" ? "fr" : "en";
+
+localStorage.setItem("lang",lang);
+
+applyLanguage();
+
+};
+
+}
+
+}
+
+applyLanguage();
+
+},120);
+
+</script>
+  
 </body>
 </html>
