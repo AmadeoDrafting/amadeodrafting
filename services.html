@@ -99,7 +99,7 @@ Custom furniture and architectural millwork drawings ready for your CNC router a
 
 <div class="quote-btn">
 
-<a href="#" class="btn-dark">
+<a href="quote.html" class="btn-dark" data-key="quote">
 Request a quote →
 </a>
 
@@ -139,6 +139,11 @@ let lang = localStorage.getItem("lang") || "en";
 const translations = {
 
 en:{
+portfolio:"Portfolio",
+services:"Services",
+about:"About",
+quote:"Request a quote →",
+
 what_we_draft:"WHAT WE DRAFT",
 services_title_1:"Four specialties, one",
 services_title_2:"standard of precision",
@@ -157,6 +162,11 @@ millwork_desc:"Custom furniture and architectural millwork drawings ready for yo
 },
 
 fr:{
+portfolio:"Portfolio",
+services:"Services",
+about:"À propos",
+quote:"Demander un devis →",
+
 what_we_draft:"CE QUE NOUS DESSINONS",
 services_title_1:"Quatre spécialités, une",
 services_title_2:"norme de précision",
@@ -194,11 +204,11 @@ if(btn){
 
 btn.innerText = lang === "en" ? "FR" : "EN";
 
-btn.onclick = function(){
+btn.onclick=function(){
 
 lang = lang === "en" ? "fr" : "en";
 
-localStorage.setItem("lang", lang);
+localStorage.setItem("lang",lang);
 
 applyLanguage();
 
