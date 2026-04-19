@@ -37,7 +37,6 @@ Everything is private and used only to prepare your quote.
 
 </div>
 
-
 <div class="quote-box">
 
 <div class="quote-sidebar">
@@ -68,6 +67,8 @@ DIRECT CONTACT
 
 </div>
 
+<div class="quote-chat">
+
 <div id="chat-messages">
 
 <div class="bot-message">
@@ -77,16 +78,18 @@ What type of drafting do you need help with?
 
 </div>
 
-<form id="chat-form">
+<form id="chat-form" enctype="multipart/form-data">
 
 <div class="chat-input">
 
-<input 
+<input
 type="text"
 id="chat-input"
 placeholder="Type your reply..."
 required
 >
+
+<input type="file" id="file-input" multiple>
 
 <button type="submit" class="send-btn">
 Send
@@ -137,20 +140,6 @@ document.getElementById("footer").innerHTML = data;
 
 </script>
 
-<div id='tawk_69cf61f4c710b01c3973db07'></div>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date(); Tawk_API.embedded='tawk_69cf61f4c710b01c3973db07';
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69cf61f4c710b01c3973db07/1jmj1c1q3';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);})();
-</script>
-<!--End of Tawk.to Script-->
-
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -158,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function(){
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
+const fileInput = document.getElementById("file-input");
 
 form.addEventListener("submit", function(e){
 
@@ -172,30 +162,29 @@ userMsg.className = "user-message";
 userMsg.innerText = message;
 
 chat.appendChild(userMsg);
+chat.scrollTop = chat.scrollHeight;
 
 sendEmail(message);
 
 input.value = "";
-
-chat.scrollTop = chat.scrollHeight;
+fileInput.value = "";
 
 });
 
 function sendEmail(message){
 
+const formData = new FormData();
+
+formData.append("message", message);
+formData.append("subject","New Quote Request - Amadeo Drafting");
+
+for(let i=0;i<fileInput.files.length;i++){
+formData.append("attachment", fileInput.files[i]);
+}
+
 fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
-
 method:"POST",
-
-headers:{
-'Content-Type':'application/json'
-},
-
-body:JSON.stringify({
-message: message,
-subject: "New Quote Request - Amadeo Drafting"
-})
-
+body:formData
 });
 
 }
@@ -203,6 +192,25 @@ subject: "New Quote Request - Amadeo Drafting"
 });
 
 </script>
-  
+
+<div id='tawk_69cf61f4c710b01c3973db07'></div>
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+Tawk_API.embedded='tawk_69cf61f4c710b01c3973db07';
+
+(function(){
+var s1=document.createElement("script"),
+s0=document.getElementsByTagName("script")[0];
+
+s1.async=true;
+s1.src='https://embed.tawk.to/69cf61f4c710b01c3973db07/1jmj1c1q3';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
 </body>
 </html>
