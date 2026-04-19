@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portfolio | Amadeo Drafting</title>
+<title>Portfolio | Amadeo Drafting & Design</title>
 
 <style>
 
@@ -27,6 +27,18 @@ background:white;
 border-bottom:1px solid #eee;
 }
 
+.logo{
+display:flex;
+align-items:center;
+height:40px;
+}
+
+.logo img{
+height:90%;
+object-fit:contain;
+transform:translateY(12px);
+}
+
 .menu{
 display:flex;
 gap:40px;
@@ -36,12 +48,30 @@ font-size:14px;
 .menu a{
 text-decoration:none;
 color:#333;
+transition:0.3s;
 }
 
-/* HEADER */
+.menu a:hover{
+color:#ff4d00;
+}
 
-.section{
-padding:120px 120px 60px 120px;
+.menu a.active{
+color:#ff4d00;
+border-bottom:2px solid #ff4d00;
+padding-bottom:6px;
+}
+
+.lang{
+border:1px solid #ddd;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+/* PORTFOLIO HEADER */
+
+.portfolio-header{
+padding:120px;
 }
 
 .small-title{
@@ -51,7 +81,7 @@ color:#777;
 margin-bottom:20px;
 }
 
-h1{
+.portfolio-header h1{
 font-size:72px;
 font-weight:500;
 margin:0;
@@ -70,7 +100,7 @@ max-width:500px;
 /* PROJECT GRID */
 
 .projects{
-margin-top:80px;
+padding:0 120px 120px 120px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:30px;
@@ -78,7 +108,12 @@ gap:30px;
 
 .projects img{
 width:100%;
-border-radius:8px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.projects img:hover{
+transform:scale(1.03);
 }
 
 </style>
@@ -87,10 +122,14 @@ border-radius:8px;
 
 <body>
 
+<!-- NAVBAR -->
+
 <div class="navbar">
 
-<div>
-<img src="Logo.png" height="40">
+<div class="logo">
+<a href="index.html">
+<img src="Logo.png" alt="Amadeo Drafting & Design">
+</a>
 </div>
 
 <div class="menu">
@@ -98,11 +137,18 @@ border-radius:8px;
 <a href="portfolio.html" class="active">Portfolio</a>
 <a href="#">Services</a>
 <a href="#">About</a>
+<a href="#">Get a quote</a>
+</div>
+
+<div class="lang">
+FR
 </div>
 
 </div>
 
-<section class="section">
+<!-- HEADER -->
+
+<section class="portfolio-header">
 
 <div class="small-title">SELECTED WORK</div>
 
@@ -114,7 +160,11 @@ Work, by <span class="orange">specialty.</span>
 Click a service to see recent drawings and models delivered under that category.
 </p>
 
-<div class="projects">
+</section>
+
+<!-- PROJECTS -->
+
+<section class="projects">
 
 <img src="project1.jpg">
 <img src="project2.jpg">
@@ -123,9 +173,8 @@ Click a service to see recent drawings and models delivered under that category.
 <img src="project5.jpg">
 <img src="project6.jpg">
 
-</div>
-
 </section>
 
 </body>
+
 </html>
