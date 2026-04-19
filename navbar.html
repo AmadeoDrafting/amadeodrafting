@@ -9,10 +9,10 @@
 </div>
 
 <div class="menu">
-<a href="portfolio.html">Portfolio</a>
-<a href="services.html">Services</a>
-<a href="about.html">About</a>
-<a href="quote.html">Get a quote</a>
+<a href="portfolio.html" data-key="portfolio">Portfolio</a>
+<a href="services.html" data-key="services">Services</a>
+<a href="about.html" data-key="about">About</a>
+<a href="quote.html" data-key="quote">Get a quote</a>
 </div>
 
 <div class="lang" id="lang-switch">
@@ -25,27 +25,64 @@ FR
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+/* language storage */
 
-const langBtn = document.getElementById("lang-switch");
+let lang = localStorage.getItem("lang") || "en";
 
-langBtn.addEventListener("click", function(){
+/* translations */
 
-let current = window.location.pathname.split("/").pop();
+const translations = {
 
-/* si está en home */
-if(current === ""){
-current = "index.html";
+en:{
+portfolio:"Portfolio",
+services:"Services",
+about:"About",
+quote:"Get a quote"
+},
+
+fr:{
+portfolio:"Portfolio",
+services:"Services",
+about:"À propos",
+quote:"Demander un devis"
 }
 
-/* cambiar a version francesa */
-let frenchPage = current.replace(".html","-fr.html");
+};
 
-/* redirigir */
-window.location.href = frenchPage;
+
+/* apply language */
+
+function applyLanguage(){
+
+document.querySelectorAll("[data-key]").forEach(el=>{
+
+const key = el.getAttribute("data-key");
+
+el.innerText = translations[lang][key];
 
 });
 
-});
+document.getElementById("lang-switch").innerText =
+lang === "en" ? "FR" : "EN";
+
+}
+
+
+/* switch language */
+
+document.getElementById("lang-switch").onclick = function(){
+
+lang = lang === "en" ? "fr" : "en";
+
+localStorage.setItem("lang", lang);
+
+applyLanguage();
+
+};
+
+
+/* initialize */
+
+applyLanguage();
 
 </script>
