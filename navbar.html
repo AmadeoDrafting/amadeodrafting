@@ -15,10 +15,37 @@
 <a href="quote.html">Get a quote</a>
 </div>
 
-<div class="lang">
+<div class="lang" id="lang-switch">
 FR
 </div>
 
 </div>
 
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const langBtn = document.getElementById("lang-switch");
+
+langBtn.addEventListener("click", function(){
+
+let current = window.location.pathname.split("/").pop();
+
+/* si está en home */
+if(current === ""){
+current = "index.html";
+}
+
+/* cambiar a version francesa */
+let frenchPage = current.replace(".html","-fr.html");
+
+/* redirigir */
+window.location.href = frenchPage;
+
+});
+
+});
+
+</script>
