@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Services | Amadeo Drafting & Design</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div id="navbar"></div>
+
+<!-- HEADER -->
+
+<section class="portfolio-header">
+
+<div class="small-title">
+WHAT WE DRAFT
+</div>
+
+<h1>
+Four specialties, one<br>
+standard of precision<span class="dot"></span>
+</h1>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="services-list">
+
+<div class="service">
+
+<div class="service-number">01</div>
+
+<div class="service-title">
+Shop drawings
+</div>
+
+<div class="service-projects">
+Fabrication-ready technical drawings with full dimensions, welding and assembly details. Reviewed for constructability before you ever see them.
+</div>
+
+</div>
+
+<div class="service">
+
+<div class="service-number">02</div>
+
+<div class="service-title">
+3D modeling — SolidWorks
+</div>
+
+<div class="service-projects">
+Parametric models for products, equipment and structures. Drives downstream documentation, BOMs and CNC work.
+</div>
+
+</div>
+
+<div class="service">
+
+<div class="service-number">03</div>
+
+<div class="service-title">
+Structural steel drafting
+</div>
+
+<div class="service-projects">
+Platforms, stairs, mezzanines and industrial structures. Fabrication drawings that work on the shop floor and the job site.
+</div>
+
+</div>
+
+<div class="service">
+
+<div class="service-number">04</div>
+
+<div class="service-title">
+Furniture & millwork
+</div>
+
+<div class="service-projects">
+Custom furniture and architectural millwork drawings ready for your CNC router and shop team.
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<div class="quote-btn">
+
+<a href="#" class="btn-dark">
+Request a quote →
+</a>
+
+</div>
+
+<!-- FOOTER -->
+
+<div id="footer"></div>
+
+<script>
+
+fetch("navbar.html")
+.then(response => response.text())
+.then(data => {
+
+document.getElementById("navbar").innerHTML = data;
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link => {
+if(link.getAttribute("href") === current){
+link.classList.add("active");
+}
+});
+
+});
+
+fetch("footer.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
+
+</script>
+
+</body>
+</html>
