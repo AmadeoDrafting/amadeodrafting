@@ -213,6 +213,24 @@ const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
 const fileInput = document.getElementById("file-input");
 
+let step = 0;
+
+const answers = {};
+
+const questions = [
+
+"What type of drafting do you need? (shop drawings, SolidWorks, structural steel, millwork)",
+
+"Do you have drawings or reference files?",
+
+"What are the approximate dimensions of the project?",
+
+"What is your project deadline?",
+
+"What email should we send the quote to?"
+
+];
+
 form.addEventListener("submit", function(e){
 
 e.preventDefault();
@@ -221,26 +239,79 @@ const message = input.value.trim();
 
 if(message === "" && fileInput.files.length === 0) return;
 
+/* USER MESSAGE */
+
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
 userMsg.innerText = message;
 
 chat.appendChild(userMsg);
+
 chat.scrollTop = chat.scrollHeight;
 
-sendEmail(message);
+answers["step"+step] = message;
+
+step++;
 
 input.value="";
-fileInput.value="";
+
+/* NEXT QUESTION */
+
+if(step < questions.length){
+
+setTimeout(()=>{
+
+const botMsg = document.createElement("div");
+botMsg.className = "bot-message";
+botMsg.innerText = questions[step];
+
+chat.appendChild(botMsg);
+
+chat.scrollTop = chat.scrollHeight;
+
+},500);
+
+}
+
+/* FINISH */
+
+else{
+
+setTimeout(()=>{
+
+const botMsg = document.createElement("div");
+botMsg.className = "bot-message";
+botMsg.innerText = "Perfect — preparing your quote request. We'll review your project shortly.";
+
+chat.appendChild(botMsg);
+
+chat.scrollTop = chat.scrollHeight;
+
+},500);
+
+sendEmail();
+
+}
 
 });
 
-function sendEmail(message){
+/* EMAIL */
+
+function sendEmail(){
 
 const formData = new FormData();
 
-formData.append("message", message);
-formData.append("subject","New Quote Request - Amadeo Drafting");
+formData.append("subject","New Project Request - Amadeo Drafting");
+
+formData.append("message",
+
+"Service: "+answers.step0+
+"\nFiles: "+answers.step1+
+"\nDimensions: "+answers.step2+
+"\nDeadline: "+answers.step3+
+"\nClient Email: "+answers.step4
+
+);
 
 for(let i=0;i<fileInput.files.length;i++){
 formData.append("attachment", fileInput.files[i]);
@@ -250,6 +321,8 @@ fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
 method:"POST",
 body:formData
 });
+
+fileInput.value="";
 
 }
 
