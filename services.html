@@ -22,13 +22,13 @@
 
 <section class="portfolio-header">
 
-<div class="small-title">
+<div class="small-title" data-key="what_we_draft">
 WHAT WE DRAFT
 </div>
 
 <h1>
-Four specialties, one<br>
-standard of precision<span class="dot"></span>
+<span data-key="services_title_1">Four specialties, one</span><br>
+<span data-key="services_title_2">standard of precision</span><span class="dot"></span>
 </h1>
 
 </section>
@@ -41,11 +41,11 @@ standard of precision<span class="dot"></span>
 
 <div class="service-number">01</div>
 
-<div class="service-title">
+<div class="service-title" data-key="shop_drawings">
 Shop drawings
 </div>
 
-<div class="service-projects">
+<div class="service-projects" data-key="shop_desc">
 Fabrication-ready technical drawings with full dimensions, welding and assembly details. Reviewed for constructability before you ever see them.
 </div>
 
@@ -55,11 +55,11 @@ Fabrication-ready technical drawings with full dimensions, welding and assembly 
 
 <div class="service-number">02</div>
 
-<div class="service-title">
+<div class="service-title" data-key="solidworks_modeling">
 3D modeling — SolidWorks
 </div>
 
-<div class="service-projects">
+<div class="service-projects" data-key="solidworks_desc">
 Parametric models for products, equipment and structures. Drives downstream documentation, BOMs and CNC work.
 </div>
 
@@ -69,11 +69,11 @@ Parametric models for products, equipment and structures. Drives downstream docu
 
 <div class="service-number">03</div>
 
-<div class="service-title">
+<div class="service-title" data-key="steel_drafting">
 Structural steel drafting
 </div>
 
-<div class="service-projects">
+<div class="service-projects" data-key="steel_desc">
 Platforms, stairs, mezzanines and industrial structures. Fabrication drawings that work on the shop floor and the job site.
 </div>
 
@@ -83,11 +83,11 @@ Platforms, stairs, mezzanines and industrial structures. Fabrication drawings th
 
 <div class="service-number">04</div>
 
-<div class="service-title">
+<div class="service-title" data-key="millwork">
 Furniture & millwork
 </div>
 
-<div class="service-projects">
+<div class="service-projects" data-key="millwork_desc">
 Custom furniture and architectural millwork drawings ready for your CNC router and shop team.
 </div>
 
@@ -137,6 +137,66 @@ fetch("footer.html")
 .then(data => {
 document.getElementById("footer").innerHTML = data;
 });
+
+</script>
+
+<script>
+
+setTimeout(()=>{
+
+let lang = localStorage.getItem("lang") || "en";
+
+const translations = {
+
+en:{
+what_we_draft:"WHAT WE DRAFT",
+services_title_1:"Four specialties, one",
+services_title_2:"standard of precision",
+
+shop_drawings:"Shop drawings",
+shop_desc:"Fabrication-ready technical drawings with full dimensions, welding and assembly details. Reviewed for constructability before you ever see them.",
+
+solidworks_modeling:"3D modeling — SolidWorks",
+solidworks_desc:"Parametric models for products, equipment and structures. Drives downstream documentation, BOMs and CNC work.",
+
+steel_drafting:"Structural steel drafting",
+steel_desc:"Platforms, stairs, mezzanines and industrial structures. Fabrication drawings that work on the shop floor and the job site.",
+
+millwork:"Furniture & millwork",
+millwork_desc:"Custom furniture and architectural millwork drawings ready for your CNC router and shop team."
+},
+
+fr:{
+what_we_draft:"CE QUE NOUS DESSINONS",
+services_title_1:"Quatre spécialités, une",
+services_title_2:"norme de précision",
+
+shop_drawings:"Dessins d’atelier",
+shop_desc:"Dessins techniques prêts pour la fabrication avec dimensions complètes, détails de soudure et d’assemblage. Vérifiés pour la constructibilité avant livraison.",
+
+solidworks_modeling:"Modélisation 3D — SolidWorks",
+solidworks_desc:"Modèles paramétriques pour produits, équipements et structures. Génère plans, BOM et fabrication CNC.",
+
+steel_drafting:"Dessin de structure métallique",
+steel_desc:"Plateformes, escaliers, mezzanines et structures industrielles. Dessins prêts pour l’atelier et le chantier.",
+
+millwork:"Mobilier et menuiserie",
+millwork_desc:"Dessins de mobilier sur mesure et menuiserie architecturale prêts pour CNC et production."
+}
+
+};
+
+document.querySelectorAll("[data-key]").forEach(el=>{
+
+const key = el.getAttribute("data-key");
+
+if(translations[lang] && translations[lang][key]){
+el.innerText = translations[lang][key];
+}
+
+});
+
+},100);
 
 </script>
 
