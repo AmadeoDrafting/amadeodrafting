@@ -9,6 +9,10 @@
 
 <style>
 
+html, body{
+overflow-x:hidden;
+}
+  
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
@@ -103,10 +107,16 @@ text-transform:uppercase;
 }
 
 .footer-cta{
-padding:120px 120px 80px 120px;
+width:100%;
+max-width:1200px;
+margin:0 auto;
+
+padding:120px 60px 80px 60px;
+
 display:grid;
 grid-template-columns:2fr 1fr 1fr;
 gap:80px;
+
 border-top:1px solid #ddd;
 }
 
@@ -131,15 +141,21 @@ margin:8px 0;
 font-size:14px;
 color:#333;
 }
+
+.footer-contact p,
+.footer-links p{
+margin:6px 0;
+font-size:14px;
+color:#333;
+}
   
 /* HERO */
 
 .hero{
-height:80vh;
+min-height:80vh;
 display:flex;
 align-items:center;
 padding-left:120px;
-position:relative;
 }
 
 .hero h1{
