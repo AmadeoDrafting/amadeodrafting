@@ -219,3 +219,80 @@ font-size:11px;
 letter-spacing:2px;
 color:#777;
 }
+/* PORTFOLIO HEADER */
+
+.portfolio-header{
+max-width:1400px;
+margin:auto;
+padding:120px 60px;
+}
+
+.small-title{
+letter-spacing:3px;
+font-size:12px;
+color:#777;
+margin-bottom:20px;
+}
+
+.portfolio-header h1{
+font-size:72px;
+font-weight:500;
+margin:0;
+}
+
+.orange{
+color:#ff4d00;
+}
+
+.subtitle{
+margin-top:20px;
+color:#666;
+max-width:500px;
+}
+
+/* SERVICES LIST */
+
+.services-list{
+max-width:1400px;
+margin:auto;
+padding:0 60px 60px 60px;
+}
+
+.service{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:30px 0;
+border-bottom:1px solid #ddd;
+cursor:pointer;
+transition:0.3s;
+}
+
+.service:hover{
+background:#fafafa;
+}
+
+.service-number{
+color:#999;
+width:60px;
+}
+
+.service-title{
+font-size:22px;
+font-weight:500;
+flex:1;
+}
+
+.service-projects{
+color:#999;
+font-size:14px;
+}
+
+/* QUOTE BUTTON */
+
+.quote-btn{
+max-width:1400px;
+margin:auto;
+padding:60px;
+}
+
