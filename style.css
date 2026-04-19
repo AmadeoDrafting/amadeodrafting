@@ -343,3 +343,93 @@ font-size:11px;
 letter-spacing:2px;
 color:#777;
 }
+
+/* QUOTE PAGE */
+
+.quote-section{
+max-width:1400px;
+margin:auto;
+padding:120px 60px;
+}
+
+.quote-header{
+max-width:700px;
+margin-bottom:80px;
+}
+
+.quote-header h1{
+font-size:72px;
+font-weight:500;
+margin:20px 0;
+line-height:1.1;
+}
+
+.quote-subtitle{
+color:#666;
+max-width:520px;
+line-height:1.6;
+}
+
+.quote-box{
+display:grid;
+grid-template-columns:320px 1fr;
+border:1px solid #e5e5e5;
+background:white;
+}
+
+.quote-sidebar{
+padding:40px;
+border-right:1px solid #e5e5e5;
+}
+
+.quote-name{
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+margin-bottom:20px;
+}
+
+.quote-sidebar h3{
+font-weight:500;
+margin-bottom:20px;
+}
+
+.quote-tags{
+color:#ff4d00;
+font-size:13px;
+margin-bottom:40px;
+}
+
+.quote-contact{
+margin-top:40px;
+font-size:14px;
+}
+
+.quote-chat{
+padding:40px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+.chat-input{
+display:flex;
+gap:10px;
+margin-top:40px;
+}
+
+.chat-input input{
+flex:1;
+padding:14px;
+border:1px solid #ddd;
+border-radius:4px;
+}
+
+.send-btn{
+background:#888;
+color:white;
+border:none;
+padding:14px 20px;
+border-radius:4px;
+cursor:pointer;
+}
