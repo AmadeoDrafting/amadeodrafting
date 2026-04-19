@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -100,14 +99,16 @@ display:none;
 
 <div class="quote-header">
 
-<div class="small-title">REQUEST A QUOTE</div>
+<div class="small-title" data-key="request_quote">
+REQUEST A QUOTE
+</div>
 
 <h1>
-Tell us about your<br>
-project<span class="dot"></span>
+<span data-key="quote_title">Tell us about your</span><br>
+<span data-key="quote_title2">project</span><span class="dot"></span>
 </h1>
 
-<p class="quote-subtitle">
+<p class="quote-subtitle" data-key="quote_subtitle">
 Chat with our intake assistant — it takes about 90 seconds.
 Attach drawings, references or 3D files anytime.
 </p>
@@ -118,7 +119,7 @@ Attach drawings, references or 3D files anytime.
 
 <div class="quote-sidebar">
 
-<h3>
+<h3 data-key="describe_project">
 Describe your project and we'll estimate it.
 </h3>
 
@@ -132,7 +133,7 @@ Shop drawings · SolidWorks · Structural steel · Millwork
 
 <div id="chat-messages" class="chat-messages">
 
-<div class="bot-message">
+<div class="bot-message" data-key="bot_intro">
 Hi — I'm Amadeo Drafting’s intake assistant.  
 What type of drafting do you need?
 </div>
@@ -154,17 +155,19 @@ enctype="multipart/form-data"
 
 <div class="chat-input">
 
-<label for="file-input" class="file-btn">📎</label> <input type="file" id="file-input" name="attachment" multiple>
+<label for="file-input" class="file-btn">📎</label>
+
+<input type="file" id="file-input" name="attachment" multiple>
 
 <input
 type="text"
 id="chat-input"
+data-key-placeholder="input_placeholder"
 placeholder="Type your reply..."
 required
-
 >
 
-<button type="submit" class="send-btn">
+<button type="submit" class="send-btn" data-key="send_btn">
 Send
 </button>
 
@@ -192,11 +195,14 @@ fetch("navbar.html")
 
 document.getElementById("navbar").innerHTML = data;
 
+/* activar menu */
+
 const links = document.querySelectorAll(".menu a");
+
 let current = window.location.pathname.split("/").pop();
 
-if(current === ""){
-current = "index.html";
+if(current===""){
+current="index.html";
 }
 
 links.forEach(link=>{
@@ -205,201 +211,22 @@ link.classList.add("active");
 }
 });
 
-});
-
-/* FOOTER */
-
-fetch("footer.html")
-.then(res => res.text())
-.then(data => {
-document.getElementById("footer").innerHTML = data;
-});
-
-</script>
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function(){
-
-const form = document.getElementById("chat-form");
-const input = document.getElementById("chat-input");
-const chat = document.getElementById("chat-messages");
-
-let step = 0;
-
-const answers = {};
-
-const questions = [
-
-"What are the approximate project dimensions? (small / medium / large)",
-
-"What is the project deadline? (standard / rush)",
-
-"What email should we send the quote to?"
-
-];
-
-form.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const message = input.value.trim();
-
-if(message === "") return;
-
-const userMsg = document.createElement("div");
-userMsg.className = "user-message";
-userMsg.innerText = message;
-
-chat.appendChild(userMsg);
-
-chat.scrollTop = chat.scrollHeight;
-
-answers["step"+step] = message;
-
-input.value="";
-
-step++;
-
-if(step <= questions.length){
-
-setTimeout(()=>{
-
-const botMsg = document.createElement("div");
-botMsg.className="bot-message";
-botMsg.innerText = questions[step-1];
-
-chat.appendChild(botMsg);
-
-chat.scrollTop = chat.scrollHeight;
-
-},500);
-
-}
-
-if(step > questions.length){
-
-estimatePrice();
-
-}
-
-});
-
-
-function estimatePrice(){
-
-let service = answers.step0.toLowerCase();
-let size = answers.step1.toLowerCase();
-let deadline = answers.step2.toLowerCase();
-
-/* BASE PRICE */
-
-let base = 420;
-
-if(service.includes("3d") || service.includes("solidworks")) base = 380;
-if(service.includes("steel") || service.includes("structural")) base = 620;
-if(service.includes("millwork") || service.includes("furniture")) base = 320;
-
-/* SIZE */
-
-let sizeFactor = 1;
-
-if(size.includes("medium")) sizeFactor = 1.5;
-if(size.includes("large")) sizeFactor = 2;
-
-/* DEADLINE */
-
-let rushFactor = 1;
-
-if(deadline.includes("rush")) rushFactor = 1.25;
-
-/* CALCULATION */
-
-let price = base * sizeFactor * rushFactor;
-
-let min = Math.round(price * 0.9);
-let max = Math.round(price * 1.1);
-
-let priceRange = "$" + min + " – $" + max + " CAD";
-
-/* SHOW PRICE */
-
-setTimeout(()=>{
-
-const botMsg = document.createElement("div");
-botMsg.className="bot-message";
-botMsg.innerText="Estimated project range: " + priceRange;
-
-chat.appendChild(botMsg);
-
-},600);
-
-
-/* DELIVERY */
-
-let hours = Math.round(price / 80);
-let days = Math.ceil(hours / 6);
-
-setTimeout(()=>{
-
-const botMsg = document.createElement("div");
-botMsg.className="bot-message";
-botMsg.innerText="Estimated effort: "+hours+" hours\nEstimated delivery: "+days+" business days";
-
-chat.appendChild(botMsg);
-
-},1200);
-
-
-/* FINAL */
-
-setTimeout(()=>{
-
-const botMsg = document.createElement("div");
-botMsg.className="bot-message";
-botMsg.innerText="Thanks — we will review your files and confirm the quote shortly.";
-
-chat.appendChild(botMsg);
-
-sendEmail(priceRange);
-
-},1800);
-
-}
-
-
-function sendEmail(price){
-
-let finalMessage =
-
-"Service: "+answers.step0+
-"\nSize: "+answers.step1+
-"\nDeadline: "+answers.step2+
-"\nClient Email: "+answers.step3+
-"\nEstimated price: "+price;
-
-document.getElementById("final-message").value = finalMessage;
-
-document.getElementById("chat-form").submit();
-
-}
-
-});
-
-</script>
-
-<script>
-
-setTimeout(()=>{
+/* -------- TRADUCCIÓN -------- */
 
 let lang = localStorage.getItem("lang") || "en";
 
 const translations = {
 
 en:{
+portfolio:"Portfolio",
+services:"Services",
+about:"About",
+quote:"Get a quote",
 
 request_quote:"REQUEST A QUOTE",
-quote_title:"Tell us about your project",
+quote_title:"Tell us about your",
+quote_title2:"project",
+
 quote_subtitle:"Chat with our intake assistant — it takes about 90 seconds. Attach drawings, references or 3D files anytime.",
 
 describe_project:"Describe your project and we'll estimate it.",
@@ -408,13 +235,18 @@ bot_intro:"Hi — I'm Amadeo Drafting’s intake assistant. What type of draftin
 
 input_placeholder:"Type your reply...",
 send_btn:"Send"
-
 },
 
 fr:{
+portfolio:"Portfolio",
+services:"Services",
+about:"À propos",
+quote:"Demander un devis",
 
 request_quote:"DEMANDE DE DEVIS",
-quote_title:"Parlez-nous de votre projet",
+quote_title:"Parlez-nous de votre",
+quote_title2:"projet",
+
 quote_subtitle:"Discutez avec notre assistant — cela prend environ 90 secondes. Ajoutez des plans ou fichiers 3D à tout moment.",
 
 describe_project:"Décrivez votre projet et nous l’estimerons.",
@@ -423,44 +255,31 @@ bot_intro:"Bonjour — je suis l’assistant Amadeo Drafting. Quel type de dessi
 
 input_placeholder:"Tapez votre réponse...",
 send_btn:"Envoyer"
-
 }
 
 };
 
-/* aplicar idioma */
-
 function applyLanguage(){
 
-if(document.querySelector(".small-title"))
-document.querySelector(".small-title").innerText =
-translations[lang].request_quote;
+document.querySelectorAll("[data-key]").forEach(el=>{
 
-if(document.querySelector(".quote-header h1"))
-document.querySelector(".quote-header h1").childNodes[0].nodeValue =
-translations[lang].quote_title;
+const key = el.getAttribute("data-key");
 
-if(document.querySelector(".quote-subtitle"))
-document.querySelector(".quote-subtitle").innerText =
-translations[lang].quote_subtitle;
+if(translations[lang][key]){
+el.innerText = translations[lang][key];
+}
 
-if(document.querySelector(".quote-sidebar h3"))
-document.querySelector(".quote-sidebar h3").innerText =
-translations[lang].describe_project;
+});
 
-if(document.querySelector(".bot-message"))
-document.querySelector(".bot-message").innerText =
-translations[lang].bot_intro;
+document.querySelectorAll("[data-key-placeholder]").forEach(el=>{
 
-if(document.getElementById("chat-input"))
-document.getElementById("chat-input").placeholder =
-translations[lang].input_placeholder;
+const key = el.getAttribute("data-key-placeholder");
 
-if(document.querySelector(".send-btn"))
-document.querySelector(".send-btn").innerText =
-translations[lang].send_btn;
+if(translations[lang][key]){
+el.placeholder = translations[lang][key];
+}
 
-/* botón idioma */
+});
 
 const btn = document.getElementById("lang-switch");
 
@@ -468,7 +287,7 @@ if(btn){
 
 btn.innerText = lang === "en" ? "FR" : "EN";
 
-btn.onclick = function(){
+btn.onclick=function(){
 
 lang = lang === "en" ? "fr" : "en";
 
@@ -484,9 +303,17 @@ applyLanguage();
 
 applyLanguage();
 
-},120);
+});
+
+/* FOOTER */
+
+fetch("footer.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
 
 </script>
-  
+
 </body>
 </html>
