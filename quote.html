@@ -284,49 +284,100 @@ estimatePrice();
 function estimatePrice(){
 
 let service = answers.step0.toLowerCase();
+let size = answers.step1.toLowerCase();
+let complexity = answers.step2.toLowerCase();
+let deadline = answers.step3.toLowerCase();
 
-let price="";
+/* BASE PRICE */
 
-if(service.includes("shop") || service.includes("drawing"))
-price="$400 – $900 CAD";
+let base = 400;
 
-else if(service.includes("solidworks") || service.includes("3d"))
-price="$300 – $800 CAD";
+if(service.includes("shop")) base = 420;
+else if(service.includes("3d") || service.includes("solidworks")) base = 380;
+else if(service.includes("steel") || service.includes("structural")) base = 620;
+else if(service.includes("millwork") || service.includes("furniture")) base = 320;
 
-else if(service.includes("steel") || service.includes("structure"))
-price="$600 – $1500 CAD";
+/* SIZE FACTOR */
 
-else if(service.includes("millwork") || service.includes("furniture"))
-price="$300 – $700 CAD";
+let sizeFactor = 1;
 
-else
-price="$300 – $1000 CAD";
+if(size.includes("medium")) sizeFactor = 1.6;
+if(size.includes("large")) sizeFactor = 2.4;
+
+/* COMPLEXITY */
+
+let complexityFactor = 1;
+
+if(complexity.includes("moderate")) complexityFactor = 1.3;
+if(complexity.includes("complex")) complexityFactor = 1.7;
+
+/* DEADLINE */
+
+let rushFactor = 1;
+
+if(deadline.includes("rush")) rushFactor = 1.25;
+
+/* CALCULATION */
+
+let price = base * sizeFactor * complexityFactor * rushFactor;
+
+/* RANGE */
+
+let min = Math.round(price * 0.9);
+let max = Math.round(price * 1.1);
+
+let priceRange = "$" + min + " – $" + max + " CAD";
+
+/* SHOW PRICE */
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText="Estimated price range: "+price;
+botMsg.innerText="Estimated project range: " + priceRange;
 
 chat.appendChild(botMsg);
 
 chat.scrollTop = chat.scrollHeight;
 
-},500);
+},600);
+
+/* DELIVERY TIME ESTIMATE */
+
+let hours = Math.round(price / 80);
+let days = Math.ceil(hours / 6);
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText="Thank you. We'll review your project and confirm the quote shortly.";
+botMsg.innerText=
+"Estimated effort: "+hours+" hours\nEstimated delivery: "+days+" business days";
 
 chat.appendChild(botMsg);
 
 chat.scrollTop = chat.scrollHeight;
 
-},1200);
+},1300);
 
-sendEmail(price);
+/* FINAL MESSAGE */
+
+setTimeout(()=>{
+
+const botMsg = document.createElement("div");
+botMsg.className="bot-message";
+botMsg.innerText=
+"Thanks — send your drawings if available and we'll confirm the quote by email shortly.";
+
+chat.appendChild(botMsg);
+
+chat.scrollTop = chat.scrollHeight;
+
+},2000);
+
+/* SEND EMAIL */
+
+sendEmail(priceRange);
 
 }
 
