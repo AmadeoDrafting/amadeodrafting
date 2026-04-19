@@ -9,12 +9,10 @@
 
 <style>
 
-html, body{
-overflow-x:hidden;
-}
-  
-body{
+html,body{
 margin:0;
+padding:0;
+overflow-x:hidden;
 font-family:Arial, Helvetica, sans-serif;
 background:#f5f5f5;
 color:#222;
@@ -40,7 +38,7 @@ height:40px;
 .logo img{
 height:90%;
 object-fit:contain;
-transform:translateY(12px);
+transform:translateY(10px);
 }
 
 .menu{
@@ -54,17 +52,10 @@ text-decoration:none;
 color:#333;
 }
 
-
 .menu a:hover{
 color:#ff4d00;
 }
 
-.menu a.active{
-color:#ff4d00;
-border-bottom:2px solid #ff4d00;
-padding-bottom:6px;
-}
-  
 .lang{
 border:1px solid #ddd;
 padding:6px 10px;
@@ -72,81 +63,6 @@ border-radius:20px;
 font-size:12px;
 }
 
-.bottom-bar{
-width:100%;
-margin-top:60px;
-
-padding:18px 60px;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-font-size:11px;
-letter-spacing:2px;
-color:#777;
-
-border-top:1px solid #ddd;
-border-bottom:1px solid #ddd;
-
-background:#f5f5f5;
-}
-
-.bottom-left{
-text-transform:uppercase;
-}
-
-.bottom-right{
-text-transform:uppercase;
-}
-
-.bottom-left{
-text-transform:uppercase;
-}
-
-.footer-cta{
-width:100%;
-max-width:1200px;
-margin:0 auto;
-
-padding:120px 60px 80px 60px;
-
-display:grid;
-grid-template-columns:2fr 1fr 1fr;
-gap:80px;
-
-border-top:1px solid #ddd;
-}
-
-.footer-left h2{
-font-size:40px;
-font-weight:500;
-line-height:1.2;
-margin-bottom:30px;
-}
-
-.footer-contact h4,
-.footer-links h4{
-font-size:11px;
-letter-spacing:2px;
-color:#777;
-margin-bottom:20px;
-}
-
-.footer-contact p,
-.footer-links p{
-margin:8px 0;
-font-size:14px;
-color:#333;
-}
-
-.footer-contact p,
-.footer-links p{
-margin:6px 0;
-font-size:14px;
-color:#333;
-}
-  
 /* HERO */
 
 .hero{
@@ -160,7 +76,7 @@ padding-left:120px;
 font-size:64px;
 font-weight:500;
 line-height:1.1;
-max-width:600px;
+max-width:550px;
 }
 
 .dot{
@@ -199,7 +115,84 @@ color:#333;
 background:white;
 }
 
+/* BOTTOM INFO BAR */
+
+.bottom-bar{
+max-width:1200px;
+margin:60px auto;
+padding:18px 60px;
+
+display:flex;
+justify-content:space-between;
+
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+
+border-top:1px solid #e5e5e5;
+border-bottom:1px solid #e5e5e5;
+
+text-transform:uppercase;
+}
+
+/* FOOTER */
+
+.footer{
+max-width:1200px;
+margin:0 auto;
+padding:80px 60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:60px;
+}
+
+.footer-left h2{
+font-size:40px;
+font-weight:500;
+line-height:1.2;
+margin-bottom:30px;
+}
+
+.footer-title{
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+margin-bottom:20px;
+}
+
+.footer-text{
+font-size:14px;
+margin-bottom:8px;
+}
+
+.footer-links a{
+display:block;
+text-decoration:none;
+color:#333;
+font-size:14px;
+margin-bottom:8px;
+}
+
+/* FOOTER META */
+
+.footer-meta{
+max-width:1200px;
+margin:40px auto;
+padding:0 60px;
+
+display:flex;
+justify-content:space-between;
+
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+}
+
 </style>
+
 </head>
 
 <body>
@@ -210,7 +203,7 @@ background:white;
 
 <div class="logo">
 <a href="index.html">
-<img src="Logo.png" alt="Amadeo Drafting & Design">
+<img src="Logo.png">
 </a>
 </div>
 
@@ -254,39 +247,74 @@ Request a quote
 
 </section>
 
+<!-- BOTTOM BAR -->
+
 <section class="bottom-bar">
 
-<h4>CONTACT</h4>
+<div>
+ENGINEERING DESIGN · MECHANICAL DRAFTING · 3D MODELING
+</div>
 
-<p>juan.jaimes.co@amadeodrafting.com</p>
-<p>+1 514 667 5563</p>
-<p>Montréal, QC</p>
+<div>
+MONTRÉAL · SERVING CANADA
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<section class="footer">
+
+<div class="footer-grid">
+
+<div class="footer-left">
+
+<h2>
+Precision that<br>
+takes shape<span class="dot"></span>
+</h2>
+
+<a href="#" class="btn-dark">Request a quote →</a>
+
+</div>
+
+<div>
+
+<div class="footer-title">CONTACT</div>
+
+<div class="footer-text">juan.jaimes.co@amadeodrafting.com</div>
+<div class="footer-text">+1 514 667 5563</div>
+<div class="footer-text">Montréal, QC</div>
 
 </div>
 
 <div class="footer-links">
 
-<h4>LINKS</h4>
+<div class="footer-title">LINKS</div>
 
-<p>Portfolio</p>
-<p>Services</p>
-<p>About</p>
-<p>Get a quote</p>
+<a href="#">Portfolio</a>
+<a href="#">Services</a>
+<a href="#">About</a>
+<a href="#">Get a quote</a>
+
+</div>
 
 </div>
 
 </section>
-  
-<div class="bottom-left">
-ENGINEERING DESIGN · MECHANICAL DRAFTING · 3D MODELING
-</div>
 
-<div class="bottom-right">
-MONTRÉAL · SERVING CANADA
-</div>
+<!-- FOOTER META -->
+
+<section class="footer-meta">
+
+<div>© 2026 AMADEO DRAFTING & DESIGN</div>
+
+<div>NEQ 2282029935</div>
+
+<div>MADE IN MONTRÉAL</div>
 
 </section>
-  
+
 </body>
 
 </html>
