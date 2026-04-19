@@ -97,23 +97,60 @@ color:#666;
 max-width:500px;
 }
 
-/* PROJECT GRID */
+/* SERVICES LIST */
 
-.projects{
-padding:0 120px 120px 120px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
+.services-list{
+padding:0 120px 60px 120px;
 }
 
-.projects img{
-width:100%;
-border-radius:10px;
+.service{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:30px 0;
+border-bottom:1px solid #ddd;
+cursor:pointer;
 transition:0.3s;
 }
 
-.projects img:hover{
-transform:scale(1.03);
+.service:hover{
+background:#fafafa;
+}
+
+.service-number{
+color:#999;
+width:60px;
+}
+
+.service-title{
+font-size:22px;
+font-weight:500;
+flex:1;
+}
+
+.service-projects{
+color:#999;
+font-size:14px;
+}
+
+/* QUOTE BUTTON */
+
+.quote-btn{
+padding:60px 120px;
+}
+
+.btn-dark{
+background:#111;
+color:white;
+padding:16px 28px;
+border-radius:30px;
+text-decoration:none;
+font-size:14px;
+display:inline-block;
+}
+
+.btn-dark:hover{
+background:#333;
 }
 
 </style>
@@ -162,19 +199,41 @@ Click a service to see recent drawings and models delivered under that category.
 
 </section>
 
-<!-- PROJECTS -->
+<!-- SERVICES -->
 
-<section class="projects">
+<section class="services-list">
 
-<img src="project1.jpg">
-<img src="project2.jpg">
-<img src="project3.jpg">
-<img src="project4.jpg">
-<img src="project5.jpg">
-<img src="project6.jpg">
+<div class="service">
+<div class="service-number">01</div>
+<div class="service-title">Shop drawings</div>
+<div class="service-projects">04 projects +</div>
+</div>
+
+<div class="service">
+<div class="service-number">02</div>
+<div class="service-title">3D modeling — SolidWorks</div>
+<div class="service-projects">04 projects +</div>
+</div>
+
+<div class="service">
+<div class="service-number">03</div>
+<div class="service-title">Structural steel drafting</div>
+<div class="service-projects">04 projects +</div>
+</div>
+
+<div class="service">
+<div class="service-number">04</div>
+<div class="service-title">Furniture & millwork</div>
+<div class="service-projects">02 projects +</div>
+</div>
 
 </section>
 
-</body>
+<!-- CTA -->
 
+<div class="quote-btn">
+<a href="#" class="btn-dark">Request a quote →</a>
+</div>
+
+</body>
 </html>
