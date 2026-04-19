@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -117,10 +118,7 @@ Request a quote →
 
 <div class="footer-title">LINKS</div>
 
-<a href="portfolio.html">Portfolio</a>
-<a href="#">Services</a>
-<a href="#">About</a>
-<a href="#">Get a quote</a>
+<a href="portfolio.html">Portfolio</a> <a href="#">Services</a> <a href="#">About</a> <a href="#">Get a quote</a>
 
 </div>
 
@@ -141,7 +139,75 @@ Request a quote →
 fetch("navbar.html")
 .then(response => response.text())
 .then(data => {
+
 document.getElementById("navbar").innerHTML = data;
+
+/* esperar a que el navbar cargue */
+
+setTimeout(()=>{
+
+let lang = localStorage.getItem("lang") || "en";
+
+/* traducciones */
+
+const translations = {
+
+en:{
+portfolio:"Portfolio",
+services:"Services",
+about:"About",
+quote:"Get a quote"
+},
+
+fr:{
+portfolio:"Portfolio",
+services:"Services",
+about:"À propos",
+quote:"Demander un devis"
+}
+
+};
+
+/* aplicar idioma */
+
+function applyLanguage(){
+
+document.querySelectorAll("[data-key]").forEach(el=>{
+
+const key = el.getAttribute("data-key");
+
+if(translations[lang][key]){
+el.innerText = translations[lang][key];
+}
+
+});
+
+/* cambiar texto botón */
+
+const btn = document.getElementById("lang-switch");
+
+if(btn){
+btn.innerText = lang === "en" ? "FR" : "EN";
+}
+
+/* botón cambiar idioma */
+
+btn.onclick = function(){
+
+lang = lang === "en" ? "fr" : "en";
+
+localStorage.setItem("lang", lang);
+
+applyLanguage();
+
+};
+
+}
+
+applyLanguage();
+
+},50);
+
 });
 
 </script>
