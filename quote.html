@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Request a Quote | Amadeo Drafting & Design</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<section class="quote-section">
+
+<div class="quote-container">
+
+<div class="quote-header">
+
+<div class="small-title">REQUEST A QUOTE</div>
+
+<h1>
+Tell us about your<br>
+project<span class="dot"></span>
+</h1>
+
+<p class="quote-subtitle">
+Chat with our intake assistant — it takes about 90 seconds.
+You can attach drawings, references or 3D files at any point.
+Everything is private and used only to prepare your quote.
+</p>
+
+</div>
+
+
+<div class="quote-box">
+
+<div class="quote-sidebar">
+
+<div class="quote-name">
+JUAN JAIMES
+</div>
+
+<h3>
+Tell the assistant about your project.  
+I'll take it from there.
+</h3>
+
+<p class="quote-tags">
+Shop drawings · 3D SolidWorks · Structural steel · Millwork
+</p>
+
+<div class="quote-contact">
+
+<div class="footer-title">
+DIRECT CONTACT
+</div>
+
+<p>juan.jaimes.co@amadeodrafting.com</p>
+<p>+1 514 667 5563</p>
+
+</div>
+
+</div>
+
+
+<div class="quote-chat">
+
+<p>
+Hi — I'm Amadeo Drafting’s intake assistant.  
+What type of drafting do you need help with?
+</p>
+
+<div class="chat-input">
+
+<input type="text" placeholder="Type your reply...">
+
+<button class="send-btn">
+Send
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="footer"></div>
+
+<script>
+
+fetch("navbar.html")
+.then(response => response.text())
+.then(data => {
+
+document.getElementById("navbar").innerHTML = data;
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link => {
+if(link.getAttribute("href") === current){
+link.classList.add("active");
+}
+});
+
+});
+
+fetch("footer.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
+
+</script>
+
+</body>
+</html>
