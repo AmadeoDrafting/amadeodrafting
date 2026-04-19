@@ -42,25 +42,25 @@ Click a service to see recent drawings and models delivered under that category.
 
 <div class="service">
 <div class="service-number">01</div>
-<div class="service-title">Shop drawings</div>
+<div class="service-title" data-key="shop_drawings">Shop drawings</div>
 <div class="service-projects">04 projects +</div>
 </div>
 
 <div class="service">
 <div class="service-number">02</div>
-<div class="service-title">3D modeling — SolidWorks</div>
+<div class="service-title" data-key="solidworks_modeling">3D modeling — SolidWorks</div>
 <div class="service-projects">04 projects +</div>
 </div>
 
 <div class="service">
 <div class="service-number">03</div>
-<div class="service-title">Structural steel drafting</div>
+<div class="service-title" data-key="steel_drafting">Structural steel drafting</div>
 <div class="service-projects">04 projects +</div>
 </div>
 
 <div class="service">
 <div class="service-number">04</div>
-<div class="service-title">Furniture & millwork</div>
+<div class="service-title" data-key="millwork">Furniture & millwork</div>
 <div class="service-projects">02 projects +</div>
 </div>
 
@@ -154,6 +154,10 @@ let lang = localStorage.getItem("lang") || "en";
 const translations = {
 
 en:{
+shop_drawings:"Shop drawings",
+solidworks_modeling:"3D modeling — SolidWorks",
+steel_drafting:"Structural steel drafting",
+millwork:"Furniture & millwork"
 portfolio:"Portfolio",
 services:"Services",
 about:"About",
@@ -165,6 +169,10 @@ specialty:"specialty"
 },
 
 fr:{
+shop_drawings:"Dessins d’atelier",
+solidworks_modeling:"Modélisation 3D — SolidWorks",
+steel_drafting:"Dessin de structure métallique",
+millwork:"Mobilier et menuiserie"
 portfolio:"Portfolio",
 services:"Services",
 about:"À propos",
