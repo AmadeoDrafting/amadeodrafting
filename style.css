@@ -260,13 +260,11 @@ padding:0 60px 60px 60px;
 
 .service{
 display:grid;
-grid-template-columns:80px 420px 420px;
-align-items:start;
+grid-template-columns:80px 320px 1fr 200px;
+align-items:center;
 
 padding:40px 0;
 border-bottom:1px solid #e5e5e5;
-
-transition:0.3s;
 }
 
 .service:hover{
@@ -276,18 +274,13 @@ background:#fafafa;
 .service-number{
 color:#999;
 font-size:13px;
-}
-
-.service-number{
-color:#999;
 width:60px;
 }
 
 .service-projects{
+justify-self:end;
 color:#777;
 font-size:14px;
-line-height:1.7;
-max-width:420px;
 }
 
 /* QUOTE BUTTON */
