@@ -276,7 +276,22 @@ Request a quote
 fetch("navbar.html")
 .then(response => response.text())
 .then(data => {
+
 document.getElementById("navbar").innerHTML = data;
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link => {
+if(link.getAttribute("href") === current){
+link.classList.add("active");
+}
+});
+
 });
 
 fetch("footer.html")
