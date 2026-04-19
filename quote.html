@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,6 +10,77 @@
 <title>Request a Quote | Amadeo Drafting & Design</title>
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+.quote-chat{
+display:flex;
+flex-direction:column;
+height:420px;
+border-left:1px solid #e5e5e5;
+}
+
+.chat-messages{
+flex:1;
+padding:30px;
+overflow-y:auto;
+font-size:14px;
+color:#444;
+}
+
+.bot-message{
+background:#f4f4f4;
+padding:14px 18px;
+border-radius:8px;
+max-width:520px;
+margin-bottom:14px;
+line-height:1.5;
+}
+
+.user-message{
+background:#ff4d00;
+color:white;
+padding:14px 18px;
+border-radius:8px;
+align-self:flex-end;
+max-width:520px;
+margin-bottom:14px;
+}
+
+.chat-input{
+display:flex;
+gap:10px;
+padding:18px;
+border-top:1px solid #e5e5e5;
+background:#fafafa;
+}
+
+#chat-input{
+flex:1;
+padding:12px 14px;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:14px;
+}
+
+#file-input{
+font-size:12px;
+}
+
+.send-btn{
+background:#333;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.send-btn:hover{
+background:#000;
+}
+
+</style>
 
 </head>
 
@@ -69,7 +141,7 @@ DIRECT CONTACT
 
 <div class="quote-chat">
 
-<div id="chat-messages">
+<div id="chat-messages" class="chat-messages">
 
 <div class="bot-message">
 Hi — I'm Amadeo Drafting’s intake assistant.  
@@ -87,6 +159,7 @@ type="text"
 id="chat-input"
 placeholder="Type your reply..."
 required
+
 >
 
 <input type="file" id="file-input" multiple>
