@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio | Amadeo Drafting</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f5f5f5;
+color:#222;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px;
+background:white;
+border-bottom:1px solid #eee;
+}
+
+.menu{
+display:flex;
+gap:40px;
+font-size:14px;
+}
+
+.menu a{
+text-decoration:none;
+color:#333;
+}
+
+/* HEADER */
+
+.section{
+padding:120px 120px 60px 120px;
+}
+
+.small-title{
+letter-spacing:3px;
+font-size:12px;
+color:#777;
+margin-bottom:20px;
+}
+
+h1{
+font-size:72px;
+font-weight:500;
+margin:0;
+}
+
+.orange{
+color:#ff4d00;
+}
+
+.subtitle{
+margin-top:20px;
+color:#666;
+max-width:500px;
+}
+
+/* PROJECT GRID */
+
+.projects{
+margin-top:80px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.projects img{
+width:100%;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div>
+<img src="Logo.png" height="40">
+</div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="#">Services</a>
+<a href="#">About</a>
+</div>
+
+</div>
+
+<section class="section">
+
+<div class="small-title">SELECTED WORK</div>
+
+<h1>
+Work, by <span class="orange">specialty.</span>
+</h1>
+
+<p class="subtitle">
+Click a service to see recent drawings and models delivered under that category.
+</p>
+
+<div class="projects">
+
+<img src="project1.jpg">
+<img src="project2.jpg">
+<img src="project3.jpg">
+<img src="project4.jpg">
+<img src="project5.jpg">
+<img src="project6.jpg">
+
+</div>
+
+</section>
+
+</body>
+</html>
