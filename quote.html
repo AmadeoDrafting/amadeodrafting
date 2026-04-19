@@ -37,7 +37,6 @@ border-radius:8px;
 max-width:520px;
 margin-bottom:14px;
 line-height:1.5;
-animation:fadeIn .4s ease;
 }
 
 .user-message{
@@ -48,15 +47,7 @@ border-radius:8px;
 align-self:flex-end;
 max-width:520px;
 margin-bottom:14px;
-animation:fadeIn .3s ease;
 }
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(6px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-/* INPUT AREA */
 
 .chat-input{
 display:flex;
@@ -75,6 +66,10 @@ border-radius:6px;
 font-size:14px;
 }
 
+#file-input{
+font-size:12px;
+}
+
 .send-btn{
 background:#333;
 color:white;
@@ -86,25 +81,6 @@ cursor:pointer;
 
 .send-btn:hover{
 background:#000;
-}
-
-/* FILE BUTTON */
-
-.file-label{
-cursor:pointer;
-font-size:18px;
-padding:4px 6px;
-}
-
-#file-input{
-display:none;
-}
-
-/* DRAG AREA */
-
-.chat-messages.drag{
-background:#fff6f2;
-border:2px dashed #ff4d00;
 }
 
 </style>
@@ -165,10 +141,6 @@ What type of drafting do you need help with?
 
 <div class="chat-input">
 
-<label class="file-label" for="file-input">📎</label>
-
-<input type="file" id="file-input" multiple>
-
 <input
 type="text"
 id="chat-input"
@@ -176,6 +148,8 @@ placeholder="Type your reply..."
 required
 
 >
+
+<input type="file" id="file-input" multiple>
 
 <button type="submit" class="send-btn">
 Send
@@ -239,35 +213,27 @@ const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
 const fileInput = document.getElementById("file-input");
 
-let files = [];
-
-/* SEND MESSAGE */
-
 form.addEventListener("submit", function(e){
 
 e.preventDefault();
 
 const message = input.value.trim();
 
-if(message === "" && files.length === 0) return;
+if(message === "" && fileInput.files.length === 0) return;
 
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
 userMsg.innerText = message;
 
 chat.appendChild(userMsg);
-
 chat.scrollTop = chat.scrollHeight;
 
 sendEmail(message);
 
 input.value="";
-files=[];
 fileInput.value="";
 
 });
-
-/* EMAIL */
 
 function sendEmail(message){
 
@@ -280,54 +246,15 @@ for(let i=0;i<fileInput.files.length;i++){
 formData.append("attachment", fileInput.files[i]);
 }
 
-fetch("https://formsubmit.co/juan.jaimes.co@amadeodrafting.com",{
+fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
 method:"POST",
 body:formData
 });
 
 }
 
-/* DRAG & DROP */
-
-chat.addEventListener("dragover",(e)=>{
-e.preventDefault();
-chat.classList.add("drag");
 });
 
-chat.addEventListener("dragleave",()=>{
-chat.classList.remove("drag");
-});
-
-chat.addEventListener("drop",(e)=>{
-
-e.preventDefault();
-
-chat.classList.remove("drag");
-
-fileInput.files = e.dataTransfer.files;
-
-});
-
-});
-
-</script>
-
-<div id='tawk_69cf61f4c710b01c3973db07'></div>
-
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-
-(function(){
-var s1=document.createElement("script"),
-s0=document.getElementsByTagName("script")[0];
-
-s1.async=true;
-s1.src='https://embed.tawk.to/69cf61f4c710b01c3973db07/1jmj1c1q3';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-
-s0.parentNode.insertBefore(s1,s0);
-})();
 </script>
 
 </body>
