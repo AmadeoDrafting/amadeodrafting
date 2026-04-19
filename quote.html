@@ -13,8 +13,6 @@
 
 <style>
 
-/* CHAT LAYOUT */
-
 .quote-chat{
 display:flex;
 flex-direction:column;
@@ -36,7 +34,6 @@ padding:14px 18px;
 border-radius:8px;
 max-width:520px;
 margin-bottom:14px;
-line-height:1.5;
 }
 
 .user-message{
@@ -51,7 +48,6 @@ margin-bottom:14px;
 
 .chat-input{
 display:flex;
-align-items:center;
 gap:10px;
 padding:16px;
 border-top:1px solid #e5e5e5;
@@ -60,14 +56,9 @@ background:#fafafa;
 
 #chat-input{
 flex:1;
-padding:12px 14px;
+padding:12px;
 border:1px solid #ddd;
 border-radius:6px;
-font-size:14px;
-}
-
-#file-input{
-font-size:12px;
 }
 
 .send-btn{
@@ -77,10 +68,6 @@ border:none;
 padding:10px 16px;
 border-radius:6px;
 cursor:pointer;
-}
-
-.send-btn:hover{
-background:#000;
 }
 
 </style>
@@ -106,8 +93,7 @@ project<span class="dot"></span>
 
 <p class="quote-subtitle">
 Chat with our intake assistant — it takes about 90 seconds.
-Attach drawings, references or 3D files at any point.
-Everything is private and used only to prepare your quote.
+Attach drawings or references anytime.
 </p>
 
 </div>
@@ -117,11 +103,11 @@ Everything is private and used only to prepare your quote.
 <div class="quote-sidebar">
 
 <h3>
-Describe your project and our team will review it.
+Describe your project and we’ll estimate it.
 </h3>
 
 <p class="quote-tags">
-Shop drawings · 3D SolidWorks · Structural steel · Millwork
+Shop drawings · SolidWorks · Structural steel · Millwork
 </p>
 
 </div>
@@ -132,12 +118,12 @@ Shop drawings · 3D SolidWorks · Structural steel · Millwork
 
 <div class="bot-message">
 Hi — I'm Amadeo Drafting’s intake assistant.  
-What type of drafting do you need help with?
+What type of drafting do you need?
 </div>
 
 </div>
 
-<form id="chat-form" enctype="multipart/form-data">
+<form id="chat-form">
 
 <div class="chat-input">
 
@@ -148,8 +134,6 @@ placeholder="Type your reply..."
 required
 
 >
-
-<input type="file" id="file-input" multiple>
 
 <button type="submit" class="send-btn">
 Send
@@ -171,33 +155,14 @@ Send
 
 <script>
 
-/* NAVBAR */
-
 fetch("navbar.html")
-.then(response => response.text())
+.then(res => res.text())
 .then(data => {
-
 document.getElementById("navbar").innerHTML = data;
-
-const links = document.querySelectorAll(".menu a");
-let current = window.location.pathname.split("/").pop();
-
-if(current === ""){
-current = "index.html";
-}
-
-links.forEach(link => {
-if(link.getAttribute("href") === current){
-link.classList.add("active");
-}
 });
-
-});
-
-/* FOOTER */
 
 fetch("footer.html")
-.then(response => response.text())
+.then(res => res.text())
 .then(data => {
 document.getElementById("footer").innerHTML = data;
 });
@@ -211,7 +176,6 @@ document.addEventListener("DOMContentLoaded", function(){
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
-const fileInput = document.getElementById("file-input");
 
 let step = 0;
 
@@ -219,15 +183,13 @@ const answers = {};
 
 const questions = [
 
-"What type of drafting do you need? (shop drawings, SolidWorks, structural steel, millwork)",
+"What type of drafting do you need?",
 
 "Do you have drawings or reference files?",
 
-"What are the approximate dimensions of the project?",
+"What are the approximate dimensions?",
 
-"What is your project deadline?",
-
-"What email should we send the quote to?"
+"What is your project deadline?"
 
 ];
 
@@ -237,9 +199,7 @@ e.preventDefault();
 
 const message = input.value.trim();
 
-if(message === "" && fileInput.files.length === 0) return;
-
-/* USER MESSAGE */
+if(message === "") return;
 
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
@@ -254,8 +214,6 @@ answers["step"+step] = message;
 step++;
 
 input.value="";
-
-/* NEXT QUESTION */
 
 if(step < questions.length){
 
@@ -273,15 +231,40 @@ chat.scrollTop = chat.scrollHeight;
 
 }
 
-/* FINISH */
-
 else{
+
+estimatePrice();
+
+}
+
+});
+
+function estimatePrice(){
+
+let service = answers.step0.toLowerCase();
+
+let price="";
+
+if(service.includes("shop") || service.includes("drawing"))
+price="$400 – $900 CAD";
+
+else if(service.includes("solidworks") || service.includes("3d"))
+price="$300 – $800 CAD";
+
+else if(service.includes("steel") || service.includes("structure"))
+price="$600 – $1500 CAD";
+
+else if(service.includes("millwork") || service.includes("furniture"))
+price="$300 – $700 CAD";
+
+else
+price="$300 – $1000 CAD";
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className = "bot-message";
-botMsg.innerText = "Perfect — preparing your quote request. We'll review your project shortly.";
+botMsg.innerText = "Estimated price range: " + price;
 
 chat.appendChild(botMsg);
 
@@ -289,40 +272,47 @@ chat.scrollTop = chat.scrollHeight;
 
 },500);
 
-sendEmail();
+setTimeout(()=>{
+
+const botMsg = document.createElement("div");
+botMsg.className = "bot-message";
+botMsg.innerText = "We will review your project and confirm the final quote shortly.";
+
+chat.appendChild(botMsg);
+
+chat.scrollTop = chat.scrollHeight;
+
+},1200);
+
+sendEmail(price);
 
 }
 
-});
+function sendEmail(price){
 
-/* EMAIL */
+fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
 
-function sendEmail(){
+method:"POST",
 
-const formData = new FormData();
+headers:{
+'Content-Type':'application/json'
+},
 
-formData.append("subject","New Project Request - Amadeo Drafting");
+body:JSON.stringify({
 
-formData.append("message",
+subject:"New Project Request - Amadeo Drafting",
+
+message:
 
 "Service: "+answers.step0+
 "\nFiles: "+answers.step1+
 "\nDimensions: "+answers.step2+
 "\nDeadline: "+answers.step3+
-"\nClient Email: "+answers.step4
+"\nEstimated price: "+price
 
-);
+})
 
-for(let i=0;i<fileInput.files.length;i++){
-formData.append("attachment", fileInput.files[i]);
-}
-
-fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
-method:"POST",
-body:formData
 });
-
-fileInput.value="";
 
 }
 
