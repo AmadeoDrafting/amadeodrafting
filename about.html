@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Amadeo Drafting & Design</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div id="navbar"></div>
+
+<!-- ABOUT SECTION -->
+
+<section class="about-section">
+
+<div class="about-grid">
+
+<div class="about-left">
+
+<div class="small-title">
+ABOUT
+</div>
+
+<h1>
+Run by a drafter,<br>
+not a salesperson<span class="dot"></span>
+</h1>
+
+<a href="#" class="btn-dark">
+Request a quote →
+</a>
+
+</div>
+
+
+<div class="about-right">
+
+<p class="about-text">
+Amadeo Drafting was founded in Montreal by Juan Jaimes to give manufacturers, engineers and architects a reliable freelance partner for precision drafting work — without the overhead of a large studio.
+</p>
+
+<p class="about-text">
+For years, Juan has worked on the shop floor side of drafting: steel fabrication, millwork, industrial equipment. The drawings you receive are built the way fabricators actually need them — complete, unambiguous, and constructible.
+</p>
+
+<p class="about-text">
+We serve clients from small metal shops and cabinetmakers to architecture studios and general contractors. Every project is handled personally, with tight feedback loops and realistic deadlines.
+</p>
+
+<div class="about-signature">
+
+<div class="about-name">
+Juan Jaimes
+</div>
+
+<div class="about-role">
+FOUNDER · LEAD DRAFTER
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<div id="footer"></div>
+
+<script>
+
+fetch("navbar.html")
+.then(response => response.text())
+.then(data => {
+
+document.getElementById("navbar").innerHTML = data;
+
+const links = document.querySelectorAll(".menu a");
+let current = window.location.pathname.split("/").pop();
+
+if(current === ""){
+current = "index.html";
+}
+
+links.forEach(link => {
+if(link.getAttribute("href") === current){
+link.classList.add("active");
+}
+});
+
+});
+
+fetch("footer.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
+
+</script>
+
+</body>
+</html>
