@@ -69,22 +69,24 @@ DIRECT CONTACT
 </div>
 
 
-<div class="quote-chat">
-
-<p>
-Hi — I'm Amadeo Drafting’s intake assistant.  
-What type of drafting do you need help with?
-</p>
+<form id="chat-form">
 
 <div class="chat-input">
 
-<input type="text" placeholder="Type your reply...">
+<input 
+type="text"
+id="chat-input"
+placeholder="Type your reply..."
+required
+>
 
-<button class="send-btn">
+<button type="submit" class="send-btn">
 Send
 </button>
 
 </div>
+
+</form>
 
 </div>
 
@@ -140,6 +142,59 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);})();
 </script>
 <!--End of Tawk.to Script-->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const form = document.getElementById("chat-form");
+const input = document.getElementById("chat-input");
+const chat = document.getElementById("chat-messages");
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const message = input.value.trim();
+
+if(message === "") return;
+
+const userMsg = document.createElement("div");
+userMsg.className = "user-message";
+userMsg.innerText = message;
+
+chat.appendChild(userMsg);
+
+sendEmail(message);
+
+input.value = "";
+
+chat.scrollTop = chat.scrollHeight;
+
+});
+
+function sendEmail(message){
+
+fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
+
+method:"POST",
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify({
+message: message,
+subject: "New Quote Request - Amadeo Drafting"
+})
+
+});
+
+}
+
+});
+
+</script>
   
 </body>
 </html>
