@@ -21,21 +21,23 @@ color:#222;
 /* NAVBAR */
 
 .navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-max-width:1400px;
-margin:auto;
-
-padding:25px 60px;
-
+width:100%;
 background:white;
 border-bottom:1px solid #eee;
 
 position:sticky;
 top:0;
 z-index:1000;
+}
+
+.navbar-inner{
+max-width:1400px;
+margin:auto;
+padding:25px 60px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
@@ -235,6 +237,8 @@ color:#777;
 
 <div class="navbar">
 
+<div class="navbar-inner">
+
 <div class="logo">
 <a href="index.html">
 <img src="Logo.png" alt="Amadeo Drafting & Design">
@@ -250,6 +254,8 @@ color:#777;
 
 <div class="lang">
 FR
+</div>
+
 </div>
 
 </div>
