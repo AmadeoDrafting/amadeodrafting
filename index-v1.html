@@ -234,29 +234,7 @@ color:#777;
 
 <!-- NAVBAR -->
 
-<div class="navbar">
-
-<div class="navbar-inner">
-
-<div class="logo">
-<a href="index.html">
-<img src="Logo.png" alt="Amadeo Drafting & Design">
-</a>
-</div>
-
-<div class="menu">
-<a href="portfolio.html">Portfolio</a>
-<a href="#">Services</a>
-<a href="#">About</a>
-<a href="#">Get a quote</a>
-</div>
-
-<div class="lang">
-FR
-</div>
-
-</div>
-</div>
+<div id="navbar"></div>
 
 <!-- HERO -->
 
@@ -373,6 +351,16 @@ MADE IN MONTRÉAL
 
 </section>
 
+<script>
+
+fetch("navbar.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("navbar").innerHTML = data;
+});
+
+</script>
+  
 </body>
 
 </html>
