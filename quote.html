@@ -221,13 +221,11 @@ const answers = {};
 
 const questions = [
 
-"What type of drafting do you need?",
+"What type of drafting do you need? (shop drawings, 3D SolidWorks, structural steel, millwork)",
 
-"Do you have drawings or reference files?",
+"What are the approximate project dimensions? (small / medium / large)",
 
-"What are the approximate dimensions?",
-
-"What is your project deadline?",
+"What is the project deadline? (standard / rush)",
 
 "What email should we send the quote to?"
 
@@ -279,14 +277,14 @@ estimatePrice();
 
 });
 
+
 /* PRICE ESTIMATION */
 
 function estimatePrice(){
 
 let service = answers.step0.toLowerCase();
 let size = answers.step1.toLowerCase();
-let complexity = answers.step2.toLowerCase();
-let deadline = answers.step3.toLowerCase();
+let deadline = answers.step2.toLowerCase();
 
 /* BASE PRICE */
 
@@ -301,15 +299,8 @@ else if(service.includes("millwork") || service.includes("furniture")) base = 32
 
 let sizeFactor = 1;
 
-if(size.includes("medium")) sizeFactor = 1.6;
-if(size.includes("large")) sizeFactor = 2.4;
-
-/* COMPLEXITY */
-
-let complexityFactor = 1;
-
-if(complexity.includes("moderate")) complexityFactor = 1.3;
-if(complexity.includes("complex")) complexityFactor = 1.7;
+if(size.includes("medium")) sizeFactor = 1.5;
+if(size.includes("large")) sizeFactor = 2;
 
 /* DEADLINE */
 
@@ -317,9 +308,9 @@ let rushFactor = 1;
 
 if(deadline.includes("rush")) rushFactor = 1.25;
 
-/* CALCULATION */
+/* FINAL CALCULATION */
 
-let price = base * sizeFactor * complexityFactor * rushFactor;
+let price = base * sizeFactor * rushFactor;
 
 /* RANGE */
 
@@ -342,7 +333,8 @@ chat.scrollTop = chat.scrollHeight;
 
 },600);
 
-/* DELIVERY TIME ESTIMATE */
+
+/* HOURS */
 
 let hours = Math.round(price / 80);
 let days = Math.ceil(hours / 6);
@@ -351,8 +343,7 @@ setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText=
-"Estimated effort: "+hours+" hours\nEstimated delivery: "+days+" business days";
+botMsg.innerText="Estimated effort: "+hours+" hours\nEstimated delivery: "+days+" business days";
 
 chat.appendChild(botMsg);
 
@@ -360,14 +351,14 @@ chat.scrollTop = chat.scrollHeight;
 
 },1300);
 
+
 /* FINAL MESSAGE */
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText=
-"Thanks — send your drawings if available and we'll confirm the quote by email shortly.";
+botMsg.innerText="Thanks — attach drawings if available and we'll confirm the quote shortly.";
 
 chat.appendChild(botMsg);
 
@@ -375,11 +366,13 @@ chat.scrollTop = chat.scrollHeight;
 
 },2000);
 
+
 /* SEND EMAIL */
 
 sendEmail(priceRange);
 
 }
+
 
 /* EMAIL */
 
@@ -392,10 +385,9 @@ formData.append("subject","New Project Request - Amadeo Drafting");
 formData.append("message",
 
 "Service: "+answers.step0+
-"\nFiles: "+answers.step1+
-"\nDimensions: "+answers.step2+
-"\nDeadline: "+answers.step3+
-"\nClient Email: "+answers.step4+
+"\nSize: "+answers.step1+
+"\nDeadline: "+answers.step2+
+"\nClient Email: "+answers.step3+
 "\nEstimated price: "+price
 
 );
