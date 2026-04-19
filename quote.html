@@ -13,6 +13,8 @@
 
 <style>
 
+/* CHAT LAYOUT */
+
 .quote-chat{
 display:flex;
 flex-direction:column;
@@ -35,6 +37,7 @@ border-radius:8px;
 max-width:520px;
 margin-bottom:14px;
 line-height:1.5;
+animation:fadeIn .4s ease;
 }
 
 .user-message{
@@ -45,12 +48,21 @@ border-radius:8px;
 align-self:flex-end;
 max-width:520px;
 margin-bottom:14px;
+animation:fadeIn .3s ease;
 }
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(6px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* INPUT AREA */
 
 .chat-input{
 display:flex;
+align-items:center;
 gap:10px;
-padding:18px;
+padding:16px;
 border-top:1px solid #e5e5e5;
 background:#fafafa;
 }
@@ -61,10 +73,6 @@ padding:12px 14px;
 border:1px solid #ddd;
 border-radius:6px;
 font-size:14px;
-}
-
-#file-input{
-font-size:12px;
 }
 
 .send-btn{
@@ -78,6 +86,25 @@ cursor:pointer;
 
 .send-btn:hover{
 background:#000;
+}
+
+/* FILE BUTTON */
+
+.file-label{
+cursor:pointer;
+font-size:18px;
+padding:4px 6px;
+}
+
+#file-input{
+display:none;
+}
+
+/* DRAG AREA */
+
+.chat-messages.drag{
+background:#fff6f2;
+border:2px dashed #ff4d00;
 }
 
 </style>
@@ -103,7 +130,7 @@ project<span class="dot"></span>
 
 <p class="quote-subtitle">
 Chat with our intake assistant — it takes about 90 seconds.
-You can attach drawings, references or 3D files at any point.
+Attach drawings, references or 3D files at any point.
 Everything is private and used only to prepare your quote.
 </p>
 
@@ -113,29 +140,13 @@ Everything is private and used only to prepare your quote.
 
 <div class="quote-sidebar">
 
-<div class="quote-name">
-JUAN JAIMES
-</div>
-
 <h3>
-Tell the assistant about your project.  
-I'll take it from there.
+Describe your project and our team will review it.
 </h3>
 
 <p class="quote-tags">
 Shop drawings · 3D SolidWorks · Structural steel · Millwork
 </p>
-
-<div class="quote-contact">
-
-<div class="footer-title">
-DIRECT CONTACT
-</div>
-
-<p>juan.jaimes.co@amadeodrafting.com</p>
-<p>+1 514 667 5563</p>
-
-</div>
 
 </div>
 
@@ -154,6 +165,10 @@ What type of drafting do you need help with?
 
 <div class="chat-input">
 
+<label class="file-label" for="file-input">📎</label>
+
+<input type="file" id="file-input" multiple>
+
 <input
 type="text"
 id="chat-input"
@@ -161,8 +176,6 @@ placeholder="Type your reply..."
 required
 
 >
-
-<input type="file" id="file-input" multiple>
 
 <button type="submit" class="send-btn">
 Send
@@ -183,6 +196,8 @@ Send
 <div id="footer"></div>
 
 <script>
+
+/* NAVBAR */
 
 fetch("navbar.html")
 .then(response => response.text())
@@ -205,6 +220,8 @@ link.classList.add("active");
 
 });
 
+/* FOOTER */
+
 fetch("footer.html")
 .then(response => response.text())
 .then(data => {
@@ -222,27 +239,35 @@ const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
 const fileInput = document.getElementById("file-input");
 
+let files = [];
+
+/* SEND MESSAGE */
+
 form.addEventListener("submit", function(e){
 
 e.preventDefault();
 
 const message = input.value.trim();
 
-if(message === "") return;
+if(message === "" && files.length === 0) return;
 
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
 userMsg.innerText = message;
 
 chat.appendChild(userMsg);
+
 chat.scrollTop = chat.scrollHeight;
 
 sendEmail(message);
 
-input.value = "";
-fileInput.value = "";
+input.value="";
+files=[];
+fileInput.value="";
 
 });
+
+/* EMAIL */
 
 function sendEmail(message){
 
@@ -255,12 +280,33 @@ for(let i=0;i<fileInput.files.length;i++){
 formData.append("attachment", fileInput.files[i]);
 }
 
-fetch("https://formsubmit.co/ajax/juan.jaimes.co@amadeodrafting.com",{
+fetch("https://formsubmit.co/juan.jaimes.co@amadeodrafting.com",{
 method:"POST",
 body:formData
 });
 
 }
+
+/* DRAG & DROP */
+
+chat.addEventListener("dragover",(e)=>{
+e.preventDefault();
+chat.classList.add("drag");
+});
+
+chat.addEventListener("dragleave",()=>{
+chat.classList.remove("drag");
+});
+
+chat.addEventListener("drop",(e)=>{
+
+e.preventDefault();
+
+chat.classList.remove("drag");
+
+fileInput.files = e.dataTransfer.files;
+
+});
 
 });
 
@@ -270,7 +316,6 @@ body:formData
 
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-Tawk_API.embedded='tawk_69cf61f4c710b01c3973db07';
 
 (function(){
 var s1=document.createElement("script"),
