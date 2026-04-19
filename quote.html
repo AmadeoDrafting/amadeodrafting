@@ -139,11 +139,22 @@ What type of drafting do you need?
 
 </div>
 
-<form id="chat-form" enctype="multipart/form-data">
+<form 
+id="chat-form"
+action="https://formsubmit.co/juan.jaimes.co@amadeodrafting.com"
+method="POST"
+enctype="multipart/form-data"
+>
+
+<input type="hidden" name="_subject" value="New Project Request - Amadeo Drafting">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+
+<input type="hidden" name="message" id="final-message">
 
 <div class="chat-input">
 
-<label for="file-input" class="file-btn">📎</label> <input type="file" id="file-input" multiple>
+<label for="file-input" class="file-btn">📎</label> <input type="file" id="file-input" name="attachment" multiple>
 
 <input
 type="text"
@@ -213,15 +224,12 @@ document.addEventListener("DOMContentLoaded", function(){
 const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
-const fileInput = document.getElementById("file-input");
 
 let step = 0;
 
 const answers = {};
 
 const questions = [
-
-"What type of drafting do you need? (shop drawings, 3D SolidWorks, structural steel, millwork)",
 
 "What are the approximate project dimensions? (small / medium / large)",
 
@@ -237,7 +245,7 @@ e.preventDefault();
 
 const message = input.value.trim();
 
-if(message === "" && fileInput.files.length === 0) return;
+if(message === "") return;
 
 const userMsg = document.createElement("div");
 userMsg.className = "user-message";
@@ -249,17 +257,17 @@ chat.scrollTop = chat.scrollHeight;
 
 answers["step"+step] = message;
 
-step++;
-
 input.value="";
 
-if(step < questions.length){
+step++;
+
+if(step <= questions.length){
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText = questions[step];
+botMsg.innerText = questions[step-1];
 
 chat.appendChild(botMsg);
 
@@ -269,7 +277,7 @@ chat.scrollTop = chat.scrollHeight;
 
 }
 
-else{
+if(step > questions.length){
 
 estimatePrice();
 
@@ -277,8 +285,6 @@ estimatePrice();
 
 });
 
-
-/* PRICE ESTIMATION */
 
 function estimatePrice(){
 
@@ -288,14 +294,13 @@ let deadline = answers.step2.toLowerCase();
 
 /* BASE PRICE */
 
-let base = 400;
+let base = 420;
 
-if(service.includes("shop")) base = 420;
-else if(service.includes("3d") || service.includes("solidworks")) base = 380;
-else if(service.includes("steel") || service.includes("structural")) base = 620;
-else if(service.includes("millwork") || service.includes("furniture")) base = 320;
+if(service.includes("3d") || service.includes("solidworks")) base = 380;
+if(service.includes("steel") || service.includes("structural")) base = 620;
+if(service.includes("millwork") || service.includes("furniture")) base = 320;
 
-/* SIZE FACTOR */
+/* SIZE */
 
 let sizeFactor = 1;
 
@@ -308,11 +313,9 @@ let rushFactor = 1;
 
 if(deadline.includes("rush")) rushFactor = 1.25;
 
-/* FINAL CALCULATION */
+/* CALCULATION */
 
 let price = base * sizeFactor * rushFactor;
-
-/* RANGE */
 
 let min = Math.round(price * 0.9);
 let max = Math.round(price * 1.1);
@@ -329,12 +332,10 @@ botMsg.innerText="Estimated project range: " + priceRange;
 
 chat.appendChild(botMsg);
 
-chat.scrollTop = chat.scrollHeight;
-
 },600);
 
 
-/* HOURS */
+/* DELIVERY */
 
 let hours = Math.round(price / 80);
 let days = Math.ceil(hours / 6);
@@ -347,61 +348,39 @@ botMsg.innerText="Estimated effort: "+hours+" hours\nEstimated delivery: "+days+
 
 chat.appendChild(botMsg);
 
-chat.scrollTop = chat.scrollHeight;
-
-},1300);
+},1200);
 
 
-/* FINAL MESSAGE */
+/* FINAL */
 
 setTimeout(()=>{
 
 const botMsg = document.createElement("div");
 botMsg.className="bot-message";
-botMsg.innerText="Thanks — attach drawings if available and we'll confirm the quote shortly.";
+botMsg.innerText="Thanks — we will review your files and confirm the quote shortly.";
 
 chat.appendChild(botMsg);
 
-chat.scrollTop = chat.scrollHeight;
-
-},2000);
-
-
-/* SEND EMAIL */
-
 sendEmail(priceRange);
+
+},1800);
 
 }
 
 
-/* EMAIL */
-
 function sendEmail(price){
 
-const formData = new FormData();
-
-formData.append("subject","New Project Request - Amadeo Drafting");
-
-formData.append("message",
+let finalMessage =
 
 "Service: "+answers.step0+
 "\nSize: "+answers.step1+
 "\nDeadline: "+answers.step2+
 "\nClient Email: "+answers.step3+
-"\nEstimated price: "+price
+"\nEstimated price: "+price;
 
-);
+document.getElementById("final-message").value = finalMessage;
 
-for(let i=0;i<fileInput.files.length;i++){
-formData.append("attachment", fileInput.files[i]);
-}
-
-fetch("https://formsubmit.co/juan.jaimes.co@amadeodrafting.com",{
-method:"POST",
-body:formData
-});
-
-fileInput.value="";
+document.getElementById("chat-form").submit();
 
 }
 
