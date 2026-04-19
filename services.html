@@ -117,6 +117,8 @@ fetch("navbar.html")
 
 document.getElementById("navbar").innerHTML = data;
 
+/* activar menú actual */
+
 const links = document.querySelectorAll(".menu a");
 let current = window.location.pathname.split("/").pop();
 
@@ -124,23 +126,13 @@ if(current === ""){
 current = "index.html";
 }
 
-links.forEach(link => {
+links.forEach(link=>{
 if(link.getAttribute("href") === current){
 link.classList.add("active");
 }
 });
 
-});
-
-fetch("footer.html")
-.then(response => response.text())
-.then(data => {
-document.getElementById("footer").innerHTML = data;
-});
-
-<script>
-
-setTimeout(()=>{
+/* -------- TRADUCCIÓN -------- */
 
 let lang = localStorage.getItem("lang") || "en";
 
@@ -199,6 +191,7 @@ el.innerText = translations[lang][key];
 const btn = document.getElementById("lang-switch");
 
 if(btn){
+
 btn.innerText = lang === "en" ? "FR" : "EN";
 
 btn.onclick = function(){
@@ -217,7 +210,13 @@ applyLanguage();
 
 applyLanguage();
 
-},100);
+});
+
+fetch("footer.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("footer").innerHTML = data;
+});
 
 </script>
 
