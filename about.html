@@ -26,16 +26,16 @@
 
 <div class="about-left">
 
-<div class="small-title">
+<div class="small-title" data-key="about">
 ABOUT
 </div>
 
 <h1>
-Run by a drafter,<br>
-not a salesperson<span class="dot"></span>
+<span data-key="about_title_1">Run by a drafter,</span><br>
+<span data-key="about_title_2">not a salesperson</span><span class="dot"></span>
 </h1>
 
-<a href="#" class="btn-dark">
+<a href="#" class="btn-dark" data-key="quote">
 Request a quote →
 </a>
 
@@ -44,15 +44,15 @@ Request a quote →
 
 <div class="about-right">
 
-<p class="about-text">
+<p class="about-text" data-key="about_p1">
 Amadeo Drafting was founded in Montreal by Juan Jaimes to give manufacturers, engineers and architects a reliable freelance partner for precision drafting work — without the overhead of a large studio.
 </p>
 
-<p class="about-text">
+<p class="about-text" data-key="about_p2">
 For years, Juan has worked on the shop floor side of drafting: steel fabrication, millwork, industrial equipment. The drawings you receive are built the way fabricators actually need them — complete, unambiguous, and constructible.
 </p>
 
-<p class="about-text">
+<p class="about-text" data-key="about_p3">
 We serve clients from small metal shops and cabinetmakers to architecture studios and general contractors. Every project is handled personally, with tight feedback loops and realistic deadlines.
 </p>
 
@@ -62,7 +62,7 @@ We serve clients from small metal shops and cabinetmakers to architecture studio
 Juan Jaimes
 </div>
 
-<div class="about-role">
+<div class="about-role" data-key="founder">
 FOUNDER · LEAD DRAFTER
 </div>
 
@@ -93,11 +93,84 @@ if(current === ""){
 current = "index.html";
 }
 
-links.forEach(link => {
+links.forEach(link=>{
 if(link.getAttribute("href") === current){
 link.classList.add("active");
 }
 });
+
+/* ---------- TRADUCCIÓN ---------- */
+
+let lang = localStorage.getItem("lang") || "en";
+
+const translations = {
+
+en:{
+about:"ABOUT",
+about_title_1:"Run by a drafter,",
+about_title_2:"not a salesperson",
+
+about_p1:"Amadeo Drafting was founded in Montreal by Juan Jaimes to give manufacturers, engineers and architects a reliable freelance partner for precision drafting work — without the overhead of a large studio.",
+
+about_p2:"For years, Juan has worked on the shop floor side of drafting: steel fabrication, millwork, industrial equipment. The drawings you receive are built the way fabricators actually need them — complete, unambiguous, and constructible.",
+
+about_p3:"We serve clients from small metal shops and cabinetmakers to architecture studios and general contractors. Every project is handled personally, with tight feedback loops and realistic deadlines.",
+
+founder:"FOUNDER · LEAD DRAFTER",
+quote:"Request a quote →"
+},
+
+fr:{
+about:"À PROPOS",
+
+about_title_1:"Dirigé par un dessinateur,",
+about_title_2:"pas par un vendeur",
+
+about_p1:"Amadeo Drafting a été fondé à Montréal par Juan Jaimes pour offrir aux fabricants, ingénieurs et architectes un partenaire fiable en dessin technique — sans les coûts d'un grand studio.",
+
+about_p2:"Depuis des années, Juan travaille du côté atelier du dessin technique : fabrication d'acier, menuiserie et équipements industriels. Les dessins livrés sont conçus exactement comme les fabricants en ont besoin.",
+
+about_p3:"Nous servons des clients allant de petits ateliers métalliques et ébénistes à des bureaux d’architecture et entrepreneurs généraux.",
+
+founder:"FONDATEUR · DESSINATEUR PRINCIPAL",
+quote:"Demander un devis →"
+}
+
+};
+
+function applyLanguage(){
+
+document.querySelectorAll("[data-key]").forEach(el=>{
+
+const key = el.getAttribute("data-key");
+
+if(translations[lang][key]){
+el.innerText = translations[lang][key];
+}
+
+});
+
+const btn = document.getElementById("lang-switch");
+
+if(btn){
+
+btn.innerText = lang === "en" ? "FR" : "EN";
+
+btn.onclick=function(){
+
+lang = lang === "en" ? "fr" : "en";
+
+localStorage.setItem("lang",lang);
+
+applyLanguage();
+
+};
+
+}
+
+}
+
+applyLanguage();
 
 });
 
