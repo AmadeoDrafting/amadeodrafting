@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,12 +20,22 @@ color:#222;
 /* NAVBAR */
 
 .navbar{
+width:100%;
+background:white;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar-inner{
+max-width:1400px;
+margin:auto;
+padding:25px 60px;
+
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:25px 60px;
-background:white;
-border-bottom:1px solid #eee;
 }
 
 .logo{
@@ -36,7 +47,7 @@ height:40px;
 .logo img{
 height:90%;
 object-fit:contain;
-transform:translateY(12px);
+transform:translateY(10px);
 }
 
 .menu{
@@ -48,7 +59,7 @@ font-size:14px;
 .menu a{
 text-decoration:none;
 color:#333;
-transition:0.3s;
+transition:0.2s;
 }
 
 .menu a:hover{
@@ -159,7 +170,7 @@ background:#333;
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVBAR LOAD -->
 
 <div id="navbar"></div>
 
@@ -215,6 +226,8 @@ Click a service to see recent drawings and models delivered under that category.
 <a href="#" class="btn-dark">Request a quote →</a>
 </div>
 
+<!-- LOAD NAVBAR SCRIPT -->
+
 <script>
 
 fetch("navbar.html")
@@ -224,6 +237,6 @@ document.getElementById("navbar").innerHTML = data;
 });
 
 </script>
-  
+
 </body>
 </html>
