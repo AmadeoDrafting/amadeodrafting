@@ -161,27 +161,7 @@ background:#333;
 
 <!-- NAVBAR -->
 
-<div class="navbar">
-
-<div class="logo">
-<a href="index.html">
-<img src="Logo.png" alt="Amadeo Drafting & Design">
-</a>
-</div>
-
-<div class="menu">
-<a href="index.html">Home</a>
-<a href="portfolio.html" class="active">Portfolio</a>
-<a href="#">Services</a>
-<a href="#">About</a>
-<a href="#">Get a quote</a>
-</div>
-
-<div class="lang">
-FR
-</div>
-
-</div>
+<div id="navbar"></div>
 
 <!-- HEADER -->
 
@@ -235,5 +215,15 @@ Click a service to see recent drawings and models delivered under that category.
 <a href="#" class="btn-dark">Request a quote →</a>
 </div>
 
+<script>
+
+fetch("navbar.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("navbar").innerHTML = data;
+});
+
+</script>
+  
 </body>
 </html>
