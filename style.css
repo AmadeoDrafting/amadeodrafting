@@ -504,4 +504,14 @@ gap:10px;
 text-align:center;
 }
 
+.logo{
+height:28px;
+}
+
+.logo img{
+height:100%;
+transform:none;
+}
+
+  
 }
