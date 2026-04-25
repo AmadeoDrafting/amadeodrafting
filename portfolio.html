@@ -284,10 +284,11 @@ function toggleService(id) {
 <script>
 function updateAllCounts() {
 
-  const services = [
-    { id: "shop", label: "count-shop" },
-    { id: "modeling", label: "count-modeling" }
-  ];
+const services = [
+  { id: "shop", label: "count-shop" },
+  { id: "modeling", label: "count-modeling" },
+  { id: "steel", label: "count-steel" }
+];
 
   services.forEach(service => {
     const gallery = document.querySelector(`#${service.id} .gallery`);
