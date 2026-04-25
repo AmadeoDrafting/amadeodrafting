@@ -316,6 +316,21 @@ const services = [
 
 updateAllCounts();
 </script>
+
+<script>
+document.addEventListener("click", function(e){
+
+  if(e.target.classList.contains("menu-toggle")){
+    const menu = document.querySelector(".mobile-menu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  if(e.target.closest(".mobile-menu a")){
+    document.querySelector(".mobile-menu").style.display = "none";
+  }
+
+});
+</script>
   
 </body>
 </html>
