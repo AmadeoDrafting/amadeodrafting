@@ -230,5 +230,22 @@ document.getElementById("footer").innerHTML = data;
 
 </script>
 
+<script>
+document.addEventListener("click", function(e){
+
+  // abrir / cerrar menú
+  if(e.target.closest(".menu-toggle")){
+    const menu = document.querySelector(".mobile-menu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
+
+  // cerrar al hacer click en link
+  if(e.target.closest(".mobile-menu a")){
+    document.querySelector(".mobile-menu").style.display = "none";
+  }
+
+});
+</script>
+  
 </body>
 </html>
