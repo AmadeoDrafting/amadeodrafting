@@ -553,4 +553,13 @@ color:#333;
 border-bottom:1px solid #eee;
 }
 
+/* acomodar FR y hamburguesa */
+
+.lang{
+position:absolute;
+right:60px;
+top:50%;
+transform:translateY(-50%);
+} 
+
 }
