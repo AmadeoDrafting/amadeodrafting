@@ -438,7 +438,7 @@ cursor:pointer;
 }
 
 /* ============================= */
-/* MOBILE VERSION */
+/* MOBILE VERSION (FIX LIMPIO) */
 /* ============================= */
 
 @media (max-width:768px){
@@ -447,6 +447,9 @@ cursor:pointer;
 
 .navbar-inner{
 padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 position:relative;
 }
 
@@ -455,7 +458,7 @@ position:relative;
 display:none;
 }
 
-/* mostrar hamburguesa */
+/* hamburguesa visible */
 .menu-toggle{
 display:block;
 font-size:24px;
@@ -466,21 +469,22 @@ top:50%;
 transform:translateY(-50%);
 }
 
-/* LOGO */
-
-.logo{
-height:auto;
+/* idioma (FR) */
+.lang{
+position:absolute;
+right:60px;
+top:50%;
+transform:translateY(-50%);
 }
 
+/* LOGO */
 .logo img{
-max-width:120px !important;
-width:100%;
-height:auto !important;
-transform:none !important;
+max-width:110px;
+height:auto;
+transform:none;
 }
 
 /* HERO */
-
 .hero{
 padding:0 25px;
 min-height:90vh;
@@ -488,27 +492,18 @@ justify-content:center;
 }
 
 .hero-content{
-max-width:100%;
 text-align:center;
 }
 
 .hero h1{
 font-size:40px;
-line-height:1.2;
 }
 
-.dot{
-width:10px;
-height:10px;
-}
-
-/* BUTTONS */
-
+/* BOTONES */
 .buttons{
 flex-direction:column;
 align-items:center;
 gap:15px;
-margin-top:30px;
 }
 
 .btn-dark,
@@ -517,41 +512,16 @@ width:220px;
 text-align:center;
 }
 
-/* FOOTER */
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:40px;
-}
-
-.footer{
-padding:60px 25px;
-}
-
-.footer-meta{
-padding:0 25px;
-flex-direction:column;
-gap:10px;
-}
-
-.bottom-bar{
-padding:18px 25px;
-flex-direction:column;
-gap:10px;
-text-align:center;
-}
-
-/* MOBILE MENU */
-
+/* MENU MOVIL */
 .mobile-menu{
 display:none;
-flex-direction:column;
 position:absolute;
 top:70px;
 left:0;
 width:100%;
 background:#f5f5f5;
 padding:20px;
+flex-direction:column;
 z-index:999;
 }
 
@@ -562,14 +532,5 @@ text-decoration:none;
 color:#333;
 border-bottom:1px solid #eee;
 }
-
-/* acomodar FR y hamburguesa */
-
-.lang{
-position:absolute;
-right:60px;
-top:50%;
-transform:translateY(-50%);
-} 
 
 }
