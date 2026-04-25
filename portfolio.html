@@ -280,21 +280,15 @@ function toggleService(id) {
 
   const allContents = document.querySelectorAll('.service-content');
 
-  // cerrar todos
   allContents.forEach(el => {
     if (el.id !== id) {
-      el.style.display = "none";
+      el.classList.remove('active');
     }
   });
 
   const current = document.getElementById(id);
 
-  // toggle del actual
-  if (current.style.display === "block") {
-    current.style.display = "none";
-  } else {
-    current.style.display = "block";
-  }
+  current.classList.toggle('active');
 }
 </script>
 
