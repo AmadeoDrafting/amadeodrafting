@@ -100,17 +100,8 @@ fetch("navbar.html")
 
   applyLanguage();
 
-  const btn = document.getElementById("lang-switch");
+const btn = document.getElementById("lang-switch");
 
-  if(btn){
-    btn.innerText = lang === "en" ? "FR" : "EN";
-
-    btn.onclick = function(){
-      lang = lang === "en" ? "fr" : "en";
-      localStorage.setItem("lang", lang);
-      applyLanguage();
-    };
-  }
 
   /* MENU HAMBURGUESA */
   const toggle = document.querySelector(".menu-toggle");
