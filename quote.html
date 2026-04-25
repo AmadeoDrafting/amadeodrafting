@@ -314,6 +314,26 @@ document.getElementById("footer").innerHTML = data;
 });
 
 </script>
+<script>
+document.addEventListener("click", function(e){
 
+  const menu = document.querySelector(".mobile-menu");
+
+  // abrir / cerrar menú
+  if(e.target.closest(".menu-toggle")){
+    if(menu){
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+  }
+
+  // cerrar al hacer click en link
+  if(e.target.closest(".mobile-menu a")){
+    if(menu){
+      menu.style.display = "none";
+    }
+  }
+
+});
+</script>
 </body>
 </html>
