@@ -85,12 +85,18 @@ Click a service to see recent drawings and models delivered under that category.
   </div>
 </div>
 
-<div class="service">
+<div class="service" onclick="toggleService('millwork')">
 <div class="service-number">04</div>
 <div class="service-title" data-key="millwork">Furniture & millwork</div>
-<div class="service-projects">02 projects +</div>
+<div class="service-projects" id="count-millwork">00 projects +</div>
 </div>
 
+<div id="millwork" class="service-content">
+  <div class="gallery">
+    <img src="project15.jpg">
+  </div>
+</div>
+  
 </section>
 
 <!-- CTA -->
@@ -288,6 +294,7 @@ const services = [
   { id: "shop", label: "count-shop" },
   { id: "modeling", label: "count-modeling" },
   { id: "steel", label: "count-steel" }
+  { id: "millwork", label: "count-millwork" }
 ];
 
   services.forEach(service => {
