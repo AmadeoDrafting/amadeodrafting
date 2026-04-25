@@ -270,17 +270,28 @@ function toggleService(id) {
 }
 </script>
 
- <script>
-function updateProjectCount() {
-  const gallery = document.querySelector("#shop .gallery");
-  const count = gallery.querySelectorAll("img").length;
+<script>
+function updateAllCounts() {
 
-  const label = document.getElementById("count-shop");
-  label.innerText = count + (count === 1 ? " project +" : " projects +");
+  const services = [
+    { id: "shop", label: "count-shop" },
+    { id: "modeling", label: "count-modeling" }
+  ];
+
+  services.forEach(service => {
+    const gallery = document.querySelector(`#${service.id} .gallery`);
+    const label = document.getElementById(service.label);
+
+    if (gallery && label) {
+      const count = gallery.querySelectorAll("img").length;
+      label.innerText = count + (count === 1 ? " project +" : " projects +");
+    }
+  });
+
 }
 
-updateProjectCount();
-</script> 
+updateAllCounts();
+</script>
   
 </body>
 </html>
