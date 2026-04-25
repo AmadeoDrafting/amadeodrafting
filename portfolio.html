@@ -43,7 +43,7 @@ Click a service to see recent drawings and models delivered under that category.
 <div class="service" onclick="toggleService('shop')">
 <div class="service-number">01</div>
 <div class="service-title" data-key="shop_drawings">Shop drawings</div>
-<div class="service-projects">04 projects +</div>
+<div class="service-projects" id="count-shop">00 projects +</div>
 </div>
 
 <div id="shop" class="service-content">
@@ -261,6 +261,18 @@ function toggleService(id) {
   }
 }
 </script>
+
+ <script>
+function updateProjectCount() {
+  const gallery = document.querySelector("#shop .gallery");
+  const count = gallery.querySelectorAll("img").length;
+
+  const label = document.getElementById("count-shop");
+  label.innerText = count + (count === 1 ? " project +" : " projects +");
+}
+
+updateProjectCount();
+</script> 
   
 </body>
 </html>
