@@ -504,14 +504,16 @@ gap:10px;
 text-align:center;
 }
 
+/* LOGO MOBILE FIX */
+
 .logo{
 height:auto;
 }
 
 .logo img{
-height:22px !important;
-max-height:22px !important;
-width:auto;
+max-width:120px !important;
+width:100%;
+height:auto !important;
 transform:none !important;
 }
 
