@@ -37,7 +37,7 @@ height:40px;
 .logo img{
 height:90%;
 object-fit:contain;
-transform:translateY(10px);
+transform:translateY(10px) scale(0.9);
 }
 
 .menu{
