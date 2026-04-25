@@ -282,13 +282,17 @@ function toggleService(id) {
 
   allContents.forEach(el => {
     if (el.id !== id) {
-      el.classList.remove('active');
+      el.style.display = "none";
     }
   });
 
   const current = document.getElementById(id);
 
-  current.classList.toggle('active');
+  if (current.style.display === "block") {
+    current.style.display = "none";
+  } else {
+    current.style.display = "block";
+  }
 }
 </script>
 
