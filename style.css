@@ -74,6 +74,11 @@ font-size:12px;
 display:none;
 }
 
+/* 👇 AGREGA ESTO */
+.mobile-menu{
+display:none;
+}
+
 /* HERO */
 
 .hero{
