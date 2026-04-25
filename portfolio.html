@@ -48,18 +48,26 @@ Click a service to see recent drawings and models delivered under that category.
 
 <div id="shop" class="service-content">
   <div class="gallery">
-    <img src="project1.jpg">
-    <img src="project2.jpg">
-    <img src="project3.jpg">
+    <img src="project8.jpg">
+    <img src="project9.jpg">
+    <img src="project10.jpg">
   </div>
 </div>
 
-<div class="service">
+<div class="service" onclick="toggleService('modeling')">
 <div class="service-number">02</div>
 <div class="service-title" data-key="solidworks_modeling">3D modeling — SolidWorks</div>
-<div class="service-projects">04 projects +</div>
+<div class="service-projects" id="count-modeling">00 projects +</div>
 </div>
 
+<div id="modeling" class="service-content">
+  <div class="gallery">
+    <img src="project1.jpg">
+    <img src="project4.jpg">
+    <img src="project7.jpg">
+  </div>
+</div>
+  
 <div class="service">
 <div class="service-number">03</div>
 <div class="service-title" data-key="steel_drafting">Structural steel drafting</div>
