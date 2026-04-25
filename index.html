@@ -25,17 +25,17 @@
 <div class="hero-content">
 
 <h1>
-Precision that<br>
-takes shape<span class="dot"></span>
+<span data-key="hero_line1">Precision that</span><br>
+<span data-key="hero_line2">takes shape</span><span class="dot"></span>
 </h1>
 
 <div class="buttons">
 
-<a href="portfolio.html" class="btn-dark">
+<a href="portfolio.html" class="btn-dark" data-key="portfolio_btn">
 Portfolio →
 </a>
 
-<a href="#" class="btn-light">
+<a href="#" class="btn-light" data-key="quote_btn">
 Request a quote
 </a>
 
@@ -49,38 +49,67 @@ Request a quote
 
 <script>
 
-fetch("/navbar.html")
+fetch("navbar.html")
 .then(response => response.text())
 .then(data => {
 
   document.getElementById("navbar").innerHTML = data;
 
-/* MENU HAMBURGUESA SOLO MOVIL */
-const toggle = document.querySelector(".menu-toggle");
-const mobileMenu = document.getElementById("mobileMenu");
+  let lang = localStorage.getItem("lang") || "en";
 
-let abierto = false;
-
-if(toggle && mobileMenu){
-
-  toggle.addEventListener("click", function(){
-
-    if(window.innerWidth <= 768){
-
-      if(abierto){
-        mobileMenu.style.display = "none";
-        abierto = false;
-      } else {
-        mobileMenu.style.display = "flex";
-        abierto = true;
-      }
-
+  const translations = {
+    en: {
+      hero_line1: "Precision that",
+      hero_line2: "takes shape",
+      portfolio_btn: "Portfolio →",
+      quote_btn: "Request a quote"
+    },
+    fr: {
+      hero_line1: "La précision qui",
+      hero_line2: "prend forme",
+      portfolio_btn: "Portfolio →",
+      quote_btn: "Demander un devis"
     }
+  };
 
-  });
+  function applyLanguage(){
+    document.querySelectorAll("[data-key]").forEach(el=>{
+      const key = el.getAttribute("data-key");
+      if(translations[lang][key]){
+        el.innerText = translations[lang][key];
+      }
+    });
+  }
 
-}
-  
+  applyLanguage();
+
+  const btn = document.getElementById("lang-switch");
+
+  if(btn){
+    btn.innerText = lang === "en" ? "FR" : "EN";
+
+    btn.onclick = function(){
+      lang = lang === "en" ? "fr" : "en";
+      localStorage.setItem("lang", lang);
+      applyLanguage();
+    };
+  }
+
+  /* MENU HAMBURGUESA */
+  const toggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  let abierto = false;
+
+  if(toggle && mobileMenu){
+    toggle.addEventListener("click", function(){
+      if(window.innerWidth <= 768){
+        mobileMenu.style.display = abierto ? "none" : "flex";
+        abierto = !abierto;
+      }
+    });
+  }
+
   const links = document.querySelectorAll(".menu a");
 
   let current = window.location.pathname.split("/").pop();
@@ -90,8 +119,7 @@ if(toggle && mobileMenu){
   }
 
   links.forEach(link => {
-    const href = link.getAttribute("href");
-    if(href === current){
+    if(link.getAttribute("href") === current){
       link.classList.add("active");
     }
   });
