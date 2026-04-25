@@ -505,12 +505,14 @@ text-align:center;
 }
 
 .logo{
-height:28px;
+height:auto;
 }
 
 .logo img{
-height:100%;
-transform:none;
+height:22px !important;
+max-height:22px !important;
+width:auto;
+transform:none !important;
 }
 
   
