@@ -544,3 +544,33 @@ text-align:right;
   
 
 }
+
+/* ===== PORTFOLIO IMAGES ===== */
+
+.portfolio-images{
+display:flex;
+gap:20px;
+overflow-x:auto;
+padding:10px 0;
+}
+
+.portfolio-images img{
+height:180px;
+border-radius:6px;
+flex-shrink:0;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+.portfolio-images{
+flex-direction:column;
+overflow-x:visible;
+}
+
+.portfolio-images img{
+width:100%;
+height:auto;
+}
+
+}
