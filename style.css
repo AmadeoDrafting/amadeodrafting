@@ -533,4 +533,11 @@ color:#333;
 border-bottom:1px solid #eee;
 }
 
+/* alinear menu a la derecha */
+.mobile-menu{
+align-items:flex-end;
+text-align:right;
+}
+  
+
 }
