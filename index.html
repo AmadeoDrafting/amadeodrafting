@@ -49,41 +49,14 @@ Request a quote
 
 <script>
 
+<script>
+
 fetch("navbar.html")
 .then(response => response.text())
 .then(data => {
 
   document.getElementById("navbar").innerHTML = data;
 
-  /* MENU HAMBURGUESA SOLO EN MOVIL */
-  const toggle = document.querySelector(".menu-toggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  let abierto = false;
-
-  if(toggle && mobileMenu){
-
-    toggle.addEventListener("click", function(){
-
-      if(window.innerWidth <= 768){
-
-        if(abierto){
-          mobileMenu.style.display = "none";
-          abierto = false;
-        } else {
-          mobileMenu.style.display = "flex";
-          abierto = true;
-        }
-
-      }
-
-    });
-
-  }
-
-}, 100);
-
-  /* MENU ACTIVO (lo que ya tenías) */
   const links = document.querySelectorAll(".menu a");
 
   let current = window.location.pathname.split("/").pop();
