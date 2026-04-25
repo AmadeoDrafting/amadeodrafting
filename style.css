@@ -544,3 +544,27 @@ text-align:right;
   
 
 }
+
+
+/* ===== PORTFOLIO INTERACTIVO ===== */
+
+.service-content {
+  display: none;
+  padding: 20px 0;
+}
+
+.gallery {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0 20px 120px;
+}
+
+.gallery img {
+  width: 260px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
