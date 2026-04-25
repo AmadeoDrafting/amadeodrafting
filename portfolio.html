@@ -105,68 +105,19 @@ Click a service to see recent drawings and models delivered under that category.
 <a href="quote.html" class="btn-dark">Request a quote →</a>
 </div>
 
-<!-- BOTTOM BAR -->
+<div id="footer"></div>
 
-<section class="bottom-bar">
+<script>
+fetch("footer.html")
+.then(response => response.text())
+.then(data => {
+  document.getElementById("footer").innerHTML = data;
 
-<div>
-ENGINEERING DESIGN · MECHANICAL DRAFTING · 3D MODELING
-</div>
-
-<div>
-MONTRÉAL · SERVING CANADA
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<section class="footer">
-
-<div class="footer-grid">
-
-<div class="footer-left">
-
-<h2>
-Precision that<br>
-takes shape<span class="dot"></span>
-</h2>
-
-<a href="quote.html" class="btn-dark">
-Request a quote →
-</a>
-
-</div>
-
-<div>
-
-<div class="footer-title">CONTACT</div>
-
-<div class="footer-text">juan.jaimes.co@amadeodrafting.com</div>
-<div class="footer-text">+1 514 667 5563</div>
-<div class="footer-text">Montréal, QC</div>
-
-</div>
-
-<div class="footer-links">
-
-<div class="footer-title">LINKS</div>
-
-<a href="portfolio.html">Portfolio</a> <a href="#">Services</a> <a href="#">About</a> <a href="#">Get a quote</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="footer-meta">
-
-<div>© 2026 AMADEO DRAFTING & DESIGN</div>
-<div>NEQ 2282029935</div>
-<div>MADE IN MONTRÉAL</div>
-
-</section>
+  if(typeof applyLanguage === "function"){
+    applyLanguage();
+  }
+});
+</script>
 
 <script>
 
