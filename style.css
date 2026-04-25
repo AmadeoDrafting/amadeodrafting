@@ -521,5 +521,22 @@ transform:none !important;
 display:none;
 }  
 
+/* HAMBURGUESA SIN HTML */
+
+.navbar-inner{
+position:relative;
+}
+
+/* icono ☰ */
+.navbar-inner::after{
+content:"☰";
+font-size:22px;
+position:absolute;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+}  
+
   
 }
