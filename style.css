@@ -549,7 +549,7 @@ text-align:right;
 /* ===== PORTFOLIO INTERACTIVO ===== */
 
 .service-content {
-  display: none;
+  display: block;
   padding: 20px 0;
 }
 
