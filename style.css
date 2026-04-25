@@ -443,6 +443,19 @@ cursor:pointer;
 
 @media (max-width:768px){
 
+.gallery {
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0 20px 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery img {
+  min-width: 250px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+  
 /* NAVBAR */
 
 .navbar-inner{
