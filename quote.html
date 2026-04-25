@@ -218,6 +218,14 @@ let lang = localStorage.getItem("lang") || "en";
 const translations = {
 
 en:{
+bottom_text_1: "ENGINEERING DESIGN · MECHANICAL DRAFTING · 3D MODELING",
+bottom_text_2: "MONTRÉAL · SERVING CANADA",
+footer_line1: "Precision that",
+footer_line2: "takes shape",
+footer_quote: "Request a quote →",
+contact: "CONTACT",
+links: "LINKS",
+made_in: "MADE IN MONTRÉAL",
 portfolio:"Portfolio",
 services:"Services",
 about:"About",
@@ -238,6 +246,14 @@ send_btn:"Send"
 },
 
 fr:{
+bottom_text_1: "CONCEPTION MÉCANIQUE · DESSIN TECHNIQUE · MODÉLISATION 3D",
+bottom_text_2: "MONTRÉAL · AU SERVICE DU CANADA",
+footer_line1: "La précision qui",
+footer_line2: "prend forme",
+footer_quote: "Demander un devis →",
+contact: "CONTACT",
+links: "LIENS",
+made_in: "FAIT À MONTRÉAL",
 portfolio:"Portfolio",
 services:"Services",
 about:"À propos",
@@ -310,7 +326,12 @@ applyLanguage();
 fetch("footer.html")
 .then(res => res.text())
 .then(data => {
-document.getElementById("footer").innerHTML = data;
+  document.getElementById("footer").innerHTML = data;
+
+  // 🔥 traducir footer
+  if(typeof applyLanguage === "function"){
+    applyLanguage();
+  }
 });
 
 </script>
