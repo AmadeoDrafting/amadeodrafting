@@ -277,12 +277,23 @@ applyLanguage();
 </script>
 <script>
 function toggleService(id) {
-  const element = document.getElementById(id);
 
-  if (element.style.display === "block") {
-    element.style.display = "none";
+  const allContents = document.querySelectorAll('.service-content');
+
+  // cerrar todos
+  allContents.forEach(el => {
+    if (el.id !== id) {
+      el.style.display = "none";
+    }
+  });
+
+  const current = document.getElementById(id);
+
+  // toggle del actual
+  if (current.style.display === "block") {
+    current.style.display = "none";
   } else {
-    element.style.display = "block";
+    current.style.display = "block";
   }
 }
 </script>
