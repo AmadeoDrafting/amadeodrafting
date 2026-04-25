@@ -55,6 +55,32 @@ fetch("/navbar.html")
 
   document.getElementById("navbar").innerHTML = data;
 
+/* MENU HAMBURGUESA SOLO MOVIL */
+const toggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+let abierto = false;
+
+if(toggle && mobileMenu){
+
+  toggle.addEventListener("click", function(){
+
+    if(window.innerWidth <= 768){
+
+      if(abierto){
+        mobileMenu.style.display = "none";
+        abierto = false;
+      } else {
+        mobileMenu.style.display = "block";
+        abierto = true;
+      }
+
+    }
+
+  });
+
+}
+  
   const links = document.querySelectorAll(".menu a");
 
   let current = window.location.pathname.split("/").pop();
