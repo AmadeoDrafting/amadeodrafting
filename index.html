@@ -53,32 +53,54 @@ fetch("navbar.html")
 .then(response => response.text())
 .then(data => {
 
-document.getElementById("navbar").innerHTML = data;
+  document.getElementById("navbar").innerHTML = data;
 
-const links = document.querySelectorAll(".menu a");
+  /* MENU HAMBURGUESA SOLO EN MOVIL */
+  const toggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-let current = window.location.pathname.split("/").pop();
+  let abierto = false;
 
-if(current === "" || current === "/"){
-current = "index.html";
-}
+  if(toggle && mobileMenu){
+    toggle.addEventListener("click", function(){
 
-links.forEach(link => {
+      if(window.innerWidth <= 768){ // 👈 SOLO CELULAR
 
-const href = link.getAttribute("href");
+        if(abierto){
+          mobileMenu.style.display = "none";
+          abierto = false;
+        } else {
+          mobileMenu.style.display = "flex";
+          abierto = true;
+        }
 
-if(href === current){
-link.classList.add("active");
-}
+      }
 
-});
+    });
+  }
+
+  /* MENU ACTIVO (lo que ya tenías) */
+  const links = document.querySelectorAll(".menu a");
+
+  let current = window.location.pathname.split("/").pop();
+
+  if(current === "" || current === "/"){
+    current = "index.html";
+  }
+
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    if(href === current){
+      link.classList.add("active");
+    }
+  });
 
 });
 
 fetch("footer.html")
 .then(response => response.text())
 .then(data => {
-document.getElementById("footer").innerHTML = data;
+  document.getElementById("footer").innerHTML = data;
 });
 
 </script>
