@@ -35,7 +35,7 @@ height:40px;
 }
 
 .logo img{
-height:80%;
+height:60%;
 object-fit:contain;
 transform:translateY(10px);
 }
