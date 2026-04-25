@@ -62,9 +62,10 @@ fetch("navbar.html")
   let abierto = false;
 
   if(toggle && mobileMenu){
+
     toggle.addEventListener("click", function(){
 
-      if(window.innerWidth <= 768){ // 👈 SOLO CELULAR
+      if(window.innerWidth <= 768){
 
         if(abierto){
           mobileMenu.style.display = "none";
@@ -77,7 +78,10 @@ fetch("navbar.html")
       }
 
     });
+
   }
+
+}, 100);
 
   /* MENU ACTIVO (lo que ya tenías) */
   const links = document.querySelectorAll(".menu a");
