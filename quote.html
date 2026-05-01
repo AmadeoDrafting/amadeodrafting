@@ -434,7 +434,7 @@ async function sendMessage(message){
     const data = await res.json();
     botMsg.innerText = data.reply;
 
-    const fileInput = document.getElementById("file-input");
+
 
 
 
@@ -493,6 +493,29 @@ function showOptions(options){
 function removeOptions(){
   document.querySelectorAll(".chat-options").forEach(el => el.remove());
 }
+
+function resetChat(){
+
+  chat.innerHTML = `
+    <div class="bot-message">
+      Hi — I'm Amadeo Drafting’s intake assistant.  
+      What type of drafting do you need?
+    </div>
+
+    <div class="chat-options">
+      <button onclick="sendMessage('shop drawings')">Shop Drawings</button>
+      <button onclick="sendMessage('3d modeling')">3D Modeling (SolidWorks)</button>
+      <button onclick="sendMessage('steel')">Structural Steel Detailing</button>
+      <button onclick="sendMessage('architecture')">Architectural Drafting</button>
+      <button onclick="sendMessage('custom project')">Custom Project</button>
+    </div>
+  `;
+
+  document.getElementById("final-message").value = "";
+  document.getElementById("file-input").value = "";
+
+}
+  
 </script>
 </body>
 </html>
