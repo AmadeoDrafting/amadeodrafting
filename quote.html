@@ -438,28 +438,45 @@ async function sendMessage(message){
 
 
 
-    // enviar email SOLO cuando tenga email o archivo
-  if (fileInput.files.length > 0 || message.includes("@") || message.length > 30) {
-  const formData = new FormData(form);
+const hasEmail = message.includes("@");
+const hasPhone = /\d{6,}/.test(message);
 
-await fetch(form.action, {
-  method: "POST",
-  body: formData
-});
+// intentar enviar si hay info suficiente
+if (fileInput.files.length > 0 || message.length > 30 || hasEmail || hasPhone) {
 
-fileInput.value = "";
-    
-// mensaje de éxito
-const successMsg = document.createElement("div");
-successMsg.className = "bot-message";
-successMsg.innerText = "✅ Your request has been sent successfully!";
+  if (hasEmail || hasPhone) {
 
-chat.appendChild(successMsg);
+    input.disabled = true;
+    const formData = new FormData(form);
 
-// limpiar chat después de 2 segundos
-setTimeout(() => {
-  resetChat();
-}, 2000);
+    await fetch(form.action, {
+      method: "POST",
+      body: formData
+    });
+
+    fileInput.value = "";
+    input.disabled = false;
+
+    const successMsg = document.createElement("div");
+    successMsg.className = "bot-message";
+    successMsg.innerText = "✅ Your request has been sent successfully!";
+
+    chat.appendChild(successMsg);
+
+    setTimeout(() => {
+      resetChat();
+    }, 2000);
+
+  } else {
+
+    const warnMsg = document.createElement("div");
+    warnMsg.className = "bot-message";
+    warnMsg.innerText = "Please provide your email or phone number so we can contact you.";
+
+    chat.appendChild(warnMsg);
+
+  }
+
 }
 
     // mostrar botones dinámicos
