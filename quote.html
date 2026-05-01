@@ -411,9 +411,9 @@ async function sendMessage(message){
     const fileInput = document.getElementById("file-input");
 
     // enviar email SOLO cuando tenga email o archivo
-    if (message.includes("@") || fileInput.files.length > 0) {
-      form.submit();
-    }
+  if (fileInput.files.length > 0 || message.includes("@") || message.length > 30) {
+  form.submit();
+}
 
     // mostrar botones dinámicos
     if (data.options) {
