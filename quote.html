@@ -408,8 +408,12 @@ async function sendMessage(message){
     });
 
     const data = await res.json();
-
     botMsg.innerText = data.reply;
+    const fileInput = document.getElementById("file-input");
+
+    if (message.includes("@") || fileInput.files.length > 0) {
+  form.submit();
+}
 
     // 🔥 mostrar botones si existen
     if (data.options) {
