@@ -410,6 +410,33 @@ async function sendMessage(message){
 
     const fileInput = document.getElementById("file-input");
 
+    fileInput.addEventListener("change", function(){
+
+  if(fileInput.files.length === 0) return;
+
+  const file = fileInput.files[0];
+
+  // contenedor mensaje
+  const fileMsg = document.createElement("div");
+  fileMsg.className = "user-message";
+
+  // si es imagen → preview
+  if(file.type.startsWith("image/")){
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.style.maxWidth = "200px";
+    img.style.borderRadius = "6px";
+    fileMsg.appendChild(img);
+  } else {
+    // si no es imagen → mostrar nombre
+    fileMsg.innerText = "📎 " + file.name;
+  }
+
+  chat.appendChild(fileMsg);
+  chat.scrollTop = chat.scrollHeight;
+
+});
+
     // enviar email SOLO cuando tenga email o archivo
   if (fileInput.files.length > 0 || message.includes("@") || message.length > 30) {
   form.submit();
