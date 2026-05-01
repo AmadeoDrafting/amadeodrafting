@@ -365,9 +365,7 @@ document.addEventListener("click", function(e){
 
 <!-- CHAT IA -->
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
-  const form = document.getElementById("chat-form");
+const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const chat = document.getElementById("chat-messages");
 
@@ -379,9 +377,10 @@ form.addEventListener("submit", async function(e){
 async function sendMessage(message){
 
   if (!message.trim()) return;
+
   document.getElementById("final-message").value += message + "\n";
 
-  // usuario
+  // mensaje usuario
   const userMsg = document.createElement("div");
   userMsg.className = "user-message";
   userMsg.innerText = message;
@@ -389,10 +388,9 @@ async function sendMessage(message){
 
   input.value = "";
 
-  // eliminar botones anteriores
   removeOptions();
 
-  // bot loading
+  // mensaje bot (loading)
   const botMsg = document.createElement("div");
   botMsg.className = "bot-message";
   botMsg.innerText = "Typing...";
@@ -409,13 +407,15 @@ async function sendMessage(message){
 
     const data = await res.json();
     botMsg.innerText = data.reply;
+
     const fileInput = document.getElementById("file-input");
 
+    // enviar email SOLO cuando tenga email o archivo
     if (message.includes("@") || fileInput.files.length > 0) {
-  form.submit();
-}
+      form.submit();
+    }
 
-    // 🔥 mostrar botones si existen
+    // mostrar botones dinámicos
     if (data.options) {
       showOptions(data.options);
     }
@@ -427,12 +427,7 @@ async function sendMessage(message){
   chat.scrollTop = chat.scrollHeight;
 }
 
-// =========================
-// BOTONES DINÁMICOS
-// =========================
-
 function showOptions(options){
-
   const container = document.createElement("div");
   container.className = "chat-options";
 
@@ -453,24 +448,6 @@ function showOptions(options){
 function removeOptions(){
   document.querySelectorAll(".chat-options").forEach(el => el.remove());
 }
-});
-
-function enableOther(){
-
-  const chat = document.getElementById("chat-messages");
-
-  removeOptions();
-
-  const msg = document.createElement("div");
-  msg.className = "bot-message";
-  msg.innerText = "Please describe your project and include your email. We will review and send you a custom quote.";
-
-  chat.appendChild(msg);
-
-  chat.scrollTop = chat.scrollHeight;
-}
-  
 </script>
-
 </body>
 </html>
