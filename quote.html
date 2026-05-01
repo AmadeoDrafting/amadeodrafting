@@ -447,6 +447,8 @@ await fetch(form.action, {
   body: formData
 });
 
+fileInput.value = "";
+    
 // mensaje de éxito
 const successMsg = document.createElement("div");
 successMsg.className = "bot-message";
