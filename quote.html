@@ -456,6 +456,7 @@ if (fileInput.files.length > 0 || message.length > 30 || hasEmail || hasPhone) {
 
     fileInput.value = "";
     input.disabled = false;
+    
 
     const successMsg = document.createElement("div");
     successMsg.className = "bot-message";
@@ -486,6 +487,7 @@ if (fileInput.files.length > 0 || message.length > 30 || hasEmail || hasPhone) {
 
   } catch (error) {
     botMsg.innerText = "Error connecting to AI.";
+    input.disabled = false;
   }
 
   chat.scrollTop = chat.scrollHeight;
