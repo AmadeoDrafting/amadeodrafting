@@ -328,26 +328,24 @@ fetch("footer.html")
 .then(data => {
   document.getElementById("footer").innerHTML = data;
 
-  // 🔥 traducir footer
   if(typeof applyLanguage === "function"){
     applyLanguage();
   }
 });
 
 </script>
+
 <script>
 document.addEventListener("click", function(e){
 
   const menu = document.querySelector(".mobile-menu");
 
-  // abrir / cerrar menú
   if(e.target.closest(".menu-toggle")){
     if(menu){
       menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
   }
 
-  // cerrar al hacer click en link
   if(e.target.closest(".mobile-menu a")){
     if(menu){
       menu.style.display = "none";
@@ -356,5 +354,56 @@ document.addEventListener("click", function(e){
 
 });
 </script>
+
+<!-- CHAT IA -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("chat-input");
+  const chat = document.getElementById("chat-messages");
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const message = input.value;
+    if (!message.trim()) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.innerText = message;
+    chat.appendChild(userMsg);
+
+    input.value = "";
+
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-message";
+    botMsg.innerText = "Typing...";
+    chat.appendChild(botMsg);
+
+    chat.scrollTop = chat.scrollHeight;
+
+    try {
+      const res = await fetch("https://chat-backend-lbgq.onrender.com/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await res.json();
+      botMsg.innerText = data.reply || "No response";
+
+    } catch (error) {
+      botMsg.innerText = "Error connecting to AI.";
+    }
+
+    chat.scrollTop = chat.scrollHeight;
+  });
+
+});
+</script>
+
 </body>
 </html>
