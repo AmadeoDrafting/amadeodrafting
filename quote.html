@@ -138,6 +138,13 @@ Hi — I'm Amadeo Drafting’s intake assistant.
 What type of drafting do you need?
 </div>
 
+<div class="chat-options">
+  <button onclick="sendMessage('shop drawings')">Shop Drawings</button>
+  <button onclick="sendMessage('solidworks')">SolidWorks</button>
+  <button onclick="sendMessage('steel')">Steel Structure</button>
+  <button onclick="enableOther()">Other</button>
+</div>
+
 </div>
 
 <form 
@@ -360,49 +367,104 @@ document.addEventListener("click", function(e){
 document.addEventListener("DOMContentLoaded", function(){
 
   const form = document.getElementById("chat-form");
-  const input = document.getElementById("chat-input");
-  const chat = document.getElementById("chat-messages");
+const input = document.getElementById("chat-input");
+const chat = document.getElementById("chat-messages");
 
-  form.addEventListener("submit", async function(e){
-    e.preventDefault();
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  sendMessage(input.value);
+});
 
-    const message = input.value;
-    if (!message.trim()) return;
+async function sendMessage(message){
 
-    const userMsg = document.createElement("div");
-    userMsg.className = "user-message";
-    userMsg.innerText = message;
-    chat.appendChild(userMsg);
+  if (!message.trim()) return;
+  document.getElementById("final-message").value += message + "\n";
 
-    input.value = "";
+  // usuario
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-message";
+  userMsg.innerText = message;
+  chat.appendChild(userMsg);
 
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-message";
-    botMsg.innerText = "Typing...";
-    chat.appendChild(botMsg);
+  input.value = "";
 
-    chat.scrollTop = chat.scrollHeight;
+  // eliminar botones anteriores
+  removeOptions();
 
-    try {
-      const res = await fetch("https://chat-backend-lbgq.onrender.com/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message })
-      });
+  // bot loading
+  const botMsg = document.createElement("div");
+  botMsg.className = "bot-message";
+  botMsg.innerText = "Typing...";
+  chat.appendChild(botMsg);
 
-      const data = await res.json();
-      botMsg.innerText = data.reply || "No response";
+  try {
+    const res = await fetch("https://chat-backend-lbgq.onrender.com/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
 
-    } catch (error) {
-      botMsg.innerText = "Error connecting to AI.";
+    const data = await res.json();
+
+    botMsg.innerText = data.reply;
+
+    // 🔥 mostrar botones si existen
+    if (data.options) {
+      showOptions(data.options);
     }
 
-    chat.scrollTop = chat.scrollHeight;
+  } catch (error) {
+    botMsg.innerText = "Error connecting to AI.";
+  }
+
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// =========================
+// BOTONES DINÁMICOS
+// =========================
+
+function showOptions(options){
+
+  const container = document.createElement("div");
+  container.className = "chat-options";
+
+  options.forEach(option => {
+    const btn = document.createElement("button");
+    btn.innerText = option;
+
+    btn.onclick = () => {
+      sendMessage(option.toLowerCase());
+    };
+
+    container.appendChild(btn);
   });
 
+  chat.appendChild(container);
+}
+
+function removeOptions(){
+  document.querySelectorAll(".chat-options").forEach(el => el.remove());
+}
 });
+
+function enableOther(){
+
+  const chat = document.getElementById("chat-messages");
+
+  removeOptions();
+
+  const msg = document.createElement("div");
+  msg.className = "bot-message";
+  msg.innerText = "Please describe your project and include your email. We will review and send you a custom quote.";
+
+  chat.appendChild(msg);
+
+  chat.scrollTop = chat.scrollHeight;
+}
+  
 </script>
 
 </body>
