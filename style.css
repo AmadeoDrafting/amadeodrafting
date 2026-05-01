@@ -594,3 +594,12 @@ text-align:right;
 .gallery img:hover {
   transform: scale(1.05);
 }
+
+.chat-file{
+  background:#ff4d00;
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:10px;
+  display:inline-block;
+}
