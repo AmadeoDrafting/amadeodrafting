@@ -440,7 +440,24 @@ async function sendMessage(message){
 
     // enviar email SOLO cuando tenga email o archivo
   if (fileInput.files.length > 0 || message.includes("@") || message.length > 30) {
-  form.submit();
+  const formData = new FormData(form);
+
+await fetch(form.action, {
+  method: "POST",
+  body: formData
+});
+
+// mensaje de éxito
+const successMsg = document.createElement("div");
+successMsg.className = "bot-message";
+successMsg.innerText = "✅ Your request has been sent successfully!";
+
+chat.appendChild(successMsg);
+
+// limpiar chat después de 2 segundos
+setTimeout(() => {
+  resetChat();
+}, 2000);
 }
 
     // mostrar botones dinámicos
