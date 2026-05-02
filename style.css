@@ -642,6 +642,34 @@ text-align:right;
   grid-template-columns:60px 1fr 80px;
   gap:15px;
 }
+
+/* DESCRIPCIÓN DE SERVICIOS DEBAJO (SOLO MOBILE) */
+
+.service{
+  display:block;
+}
+
+.service-number{
+  margin-bottom:5px;
+}
+
+.service-title{
+  display:block;
+  margin-bottom:8px;
+}
+
+.service-description{
+  display:block;
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+
+.service-projects{
+  display:block;
+  margin-top:5px;
+}
   
 }
 
