@@ -604,8 +604,8 @@ text-align:right;
   display:inline-block;
 }
 
-/* MOVER TITULOS MÁS A LA IZQUIERDA (SOLO MOBILE) */
+/* AJUSTE FINO MOBILE (SIN ROMPER LAYOUT) */
 .service{
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 50px 1fr 80px;
   gap: 10px;
 }
