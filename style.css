@@ -329,3 +329,14 @@ scroll-snap-align:start;
 }
 
 }
+
+/* SOLO botón en portfolio (debajo de servicios) */
+.services-list + .quote-btn{
+max-width:1400px;
+margin:40px auto;
+padding:0 60px;
+
+display:flex;
+justify-content:center;
+}
+
