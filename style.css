@@ -115,7 +115,6 @@ margin:0;
   background:#ff4d00;
   border-radius:50%;
   margin-left:8px;
-
   transform: translateY(-18px); /* 🔥 ESTA ES LA CLAVE */
 }
 
