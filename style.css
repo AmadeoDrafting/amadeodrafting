@@ -635,6 +635,13 @@ text-align:right;
   padding:20px;
   text-align:center;
 }
+
+/* AJUSTE TITULOS SERVICES (SOLO MOBILE) */
+
+.service{
+  grid-template-columns:60px 1fr 80px;
+  gap:15px;
+}
   
 }
 
