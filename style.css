@@ -109,12 +109,14 @@ margin:0;
 }
 
 .dot{
-display:inline-block;
-width:14px;
-height:14px;
-background:#ff4d00;
-border-radius:50%;
-margin-left:8px;
+  display:inline-block;
+  width:14px;
+  height:14px;
+  background:#ff4d00;
+  border-radius:50%;
+  margin-left:8px;
+
+  transform: translateY(-18px); /* 🔥 ESTA ES LA CLAVE */
 }
 
 /* BUTTONS */
