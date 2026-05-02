@@ -484,9 +484,6 @@ cursor:pointer;
     transform: translateY(1px);
   }
 
-}
-  
-
 .gallery {
   overflow-x: auto;
   gap: 15px;
@@ -499,6 +496,9 @@ cursor:pointer;
   flex-shrink: 0;
   scroll-snap-align: start;
 }
+  
+}
+  
   
 /* NAVBAR */
 
