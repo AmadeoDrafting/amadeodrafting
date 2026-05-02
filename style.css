@@ -449,6 +449,29 @@ cursor:pointer;
 
 @media (max-width:768px){
 
+/* HEADER PORTFOLIO COMPACTO (SOLO MOBILE) */
+
+.portfolio-header{
+  padding:50px 20px 25px 20px;
+}
+
+.portfolio-header h1{
+  font-size:36px;
+  line-height:1.1;
+  margin-top:10px;
+}
+
+.small-title{
+  margin-bottom:10px;
+}
+
+.subtitle{
+  margin-top:12px;
+  font-size:14px;
+  line-height:1.5;
+  max-width:100%;
+}
+
 .gallery {
   overflow-x: auto;
   gap: 15px;
