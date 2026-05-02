@@ -670,6 +670,18 @@ text-align:right;
   display:block;
   margin-top:5px;
 }
+
+/* AJUSTE PUNTO DEL TITULO (SOLO MOBILE) */
+
+.portfolio-header h1{
+  display:inline;
+}
+
+.dot{
+  display:inline-block;
+  vertical-align:baseline;
+  transform:translateY(-2px);
+}
   
 }
 
