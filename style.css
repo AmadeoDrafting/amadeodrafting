@@ -583,7 +583,29 @@ border-bottom:1px solid #eee;
 align-items:flex-end;
 text-align:right;
 }
-  
+
+/* ===== AJUSTE PORTFOLIO HEADER (SOLO CELULAR) ===== */
+
+.portfolio-header{
+  padding:50px 20px 20px 20px;
+}
+
+.portfolio-header h1{
+  font-size:36px;
+  line-height:1.1;
+  margin-top:8px;
+}
+
+.small-title{
+  margin-bottom:8px;
+}
+
+.subtitle{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.5;
+  max-width:100%;
+}
 
 }
 
@@ -625,10 +647,4 @@ text-align:right;
   border-radius:8px;
   margin-bottom:10px;
   display:inline-block;
-}
-
-/* AJUSTE FINO MOBILE (SIN ROMPER LAYOUT) */
-.service{
-  grid-template-columns: 50px 1fr 80px;
-  gap: 10px;
 }
