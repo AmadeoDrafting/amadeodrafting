@@ -222,6 +222,58 @@ width:260px;
 border-radius:6px;
 }
 
+/* ===== FOOTER FIX ===== */
+
+.footer{
+max-width:1400px;
+margin:0 auto;
+padding:80px 60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:60px;
+}
+
+.footer-left h2{
+font-size:40px;
+font-weight:500;
+line-height:1.2;
+margin-bottom:30px;
+}
+
+.footer-title{
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+margin-bottom:20px;
+}
+
+.footer-text{
+font-size:14px;
+margin-bottom:8px;
+}
+
+.footer-links a{
+display:block;
+text-decoration:none;
+color:#333;
+font-size:14px;
+margin-bottom:8px;
+}
+
+.footer-meta{
+max-width:1400px;
+margin:40px auto;
+padding:0 60px;
+display:flex;
+justify-content:space-between;
+font-size:11px;
+letter-spacing:2px;
+color:#777;
+}
+
 /* ===== MOBILE ===== */
 
 @media (max-width:768px){
