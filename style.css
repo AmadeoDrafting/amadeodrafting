@@ -449,6 +449,10 @@ cursor:pointer;
 
 @media (max-width:768px){
 
+.dot{
+  transform: translateY(-35px) translateX(-5px);
+}  
+
 .gallery {
   overflow-x: auto;
   gap: 15px;
