@@ -448,34 +448,44 @@ cursor:pointer;
 /* ============================= */
 
 @media (max-width:768px){
-  
-.portfolio-header .orange{
-  position: relative;
-}
-  
-.portfolio-header .orange::after{
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: #ff4d00;
-  border-radius: 50%;
-  margin-left: 6px;
-  transform: translateY(2px);
-}
-  
- .portfolio-header h1{
-  font-size: 42px;
-  line-height: 1.15;
-}
 
-.portfolio-header h1 span{
-  display: inline;
-} 
+  .portfolio-header{
+    padding: 80px 25px 40px 25px;
+  }
+
+  .small-title{
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    display: inline-block;
+  }
 
   .portfolio-header h1{
-    line-height: 1.1;
+    font-size: 42px;
+    line-height: 1.15;
+    margin-top: 10px;
   }
+
+  .portfolio-header h1 span{
+    display: inline;
+  }
+
+  .subtitle{
+    margin-top: 15px;
+  }
+
+  .portfolio-header .orange::after{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ff4d00;
+    border-radius: 50%;
+    margin-left: 6px;
+    transform: translateY(1px);
+  }
+
+}
+  
 
 .gallery {
   overflow-x: auto;
