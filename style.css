@@ -453,10 +453,8 @@ cursor:pointer;
     line-height: 1.1;
   }
 
-  .dot{
-    transform: translateY(-22px) translateX(-3px);
-  }
-
+.portfolio-header .dot{
+  transform: translateY(-22px) translateX(-3px);
 } 
 
 .gallery {
