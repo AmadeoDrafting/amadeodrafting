@@ -603,3 +603,9 @@ text-align:right;
   margin-bottom:10px;
   display:inline-block;
 }
+
+/* MOVER TITULOS MÁS A LA IZQUIERDA (SOLO MOBILE) */
+.service{
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+}
