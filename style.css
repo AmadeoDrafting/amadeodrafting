@@ -613,6 +613,28 @@ text-align:right;
   padding-top:10px;
   display:inline-block;
 }
+
+/* ===== FOOTER MOBILE (SOLO CELULAR) ===== */
+
+.footer{
+  padding:50px 20px;
+}
+
+.footer-grid{
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+.footer-left h2{
+  font-size:32px;
+}
+
+.footer-meta{
+  flex-direction:column;
+  gap:10px;
+  padding:20px;
+  text-align:center;
+}
   
 }
 
