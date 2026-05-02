@@ -442,7 +442,7 @@ padding:14px 20px;
 border-radius:4px;
 cursor:pointer;
 }
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /* ============================= */
 /* MOBILE VERSION (FIX LIMPIO) */
 /* ============================= */
@@ -613,10 +613,32 @@ text-align:right;
   padding-top:10px;
   display:inline-block;
 }
+
+/* ===== FOOTER MOBILE FIX ===== */
+
+.footer{
+  padding:50px 20px;
+}
+
+.footer-grid{
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+.footer-left h2{
+  font-size:32px;
+}
+
+.footer-meta{
+  flex-direction:column;
+  gap:10px;
+  padding:20px;
+  text-align:center;
+}
   
 }
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 /* ===== PORTFOLIO INTERACTIVO ===== */
 
 .service-content {
