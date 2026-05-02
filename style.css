@@ -449,9 +449,15 @@ cursor:pointer;
 
 @media (max-width:768px){
 
-.dot{
-  transform: translateY(-35px) translateX(-5px);
-}  
+  .portfolio-header h1{
+    line-height: 1.1;
+  }
+
+  .dot{
+    transform: translateY(-22px) translateX(-3px);
+  }
+
+} 
 
 .gallery {
   overflow-x: auto;
