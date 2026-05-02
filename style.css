@@ -448,6 +448,11 @@ cursor:pointer;
 /* ============================= */
 
 @media (max-width:768px){
+  
+.portfolio-header .orange{
+  position: relative;
+}
+  
 .portfolio-header .orange::after{
   content: "";
   display: inline-block;
@@ -456,8 +461,9 @@ cursor:pointer;
   background: #ff4d00;
   border-radius: 50%;
   margin-left: 6px;
-  transform: translateY(-4px);
+  transform: translateY(2px);
 }
+  
  .portfolio-header h1{
   font-size: 42px;
   line-height: 1.15;
