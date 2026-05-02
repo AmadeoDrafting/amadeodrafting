@@ -671,10 +671,11 @@ text-align:right;
   margin-top:5px;
 }
 
-/* AJUSTE FINO DEL PUNTO (SOLO MOBILE) */
-.dot{
-  transform:translateY(-4px);
+/* AJUSTE REAL DEL PUNTO (SOLO MOBILE) */
+.portfolio-header .orange::after{
+  transform:translateY(-3px);
 }
+
   
 }
 
