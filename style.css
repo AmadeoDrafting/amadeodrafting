@@ -718,3 +718,65 @@ text-align:right;
   margin-bottom:10px;
   display:inline-block;
 }
+
+/* IMAGE ZOOM */
+
+.gallery img{
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.gallery img:hover{
+  transform:scale(1.02);
+}
+
+/* MODAL */
+
+.image-modal{
+  display:none;
+  position:fixed;
+  z-index:9999;
+  padding-top:40px;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  overflow:auto;
+  background:rgba(0,0,0,0.92);
+}
+
+.modal-content{
+  margin:auto;
+  display:block;
+  max-width:90%;
+  max-height:85vh;
+  border-radius:12px;
+  animation:zoomIn 0.25s ease;
+}
+
+.close-modal{
+  position:absolute;
+  top:25px;
+  right:40px;
+  color:white;
+  font-size:40px;
+  font-weight:300;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.close-modal:hover{
+  opacity:0.7;
+}
+
+@keyframes zoomIn{
+  from{
+    transform:scale(0.9);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
