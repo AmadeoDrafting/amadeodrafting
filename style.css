@@ -698,10 +698,15 @@ text-align:right;
   display: flex;
   gap: 20px;
   padding: 10px 0 20px 120px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 .gallery img {
   width: 260px;
+  height: auto;
+  flex-shrink: 0;
   border-radius: 6px;
   transition: 0.3s;
 }
