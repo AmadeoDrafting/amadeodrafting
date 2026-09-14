@@ -785,3 +785,34 @@ text-align:right;
     opacity:1;
   }
 }
+
+-------------------------------------------------------------------------
+
+/* ===== CHAT INPUT - MOBILE ===== */
+
+@media (max-width:768px){
+
+  .chat-input{
+    display:flex;
+    width:100%;
+    gap:8px;
+    margin-top:25px;
+    box-sizing:border-box;
+  }
+
+  .chat-input input{
+    flex:1;
+    width:100%;
+    min-width:0;
+    padding:14px;
+    font-size:16px;
+    box-sizing:border-box;
+  }
+
+  .send-btn{
+    padding:14px 16px;
+    font-size:14px;
+    white-space:nowrap;
+  }
+
+}
