@@ -97,7 +97,7 @@ margin:auto;
 padding:0 60px;
 
 background-image:
-linear-gradient(rgba(245,245,245,0.72), rgba(245,245,245,0.72)),
+linear-gradient(rgba(245,245,245,0.90), rgba(245,245,245,0.90)),
 url("hero-background.jpg");
 
 background-size:cover;
